@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "test": "gulp test",
-    "install": "gulp build",
-    "start": "gulp serve:dist"
+    "install": "bower install & gulp build",
+    "postinstall": "gulp serve:dist"
   },
   "dependencies": {
     "gulp": "3.9.0",
