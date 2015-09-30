@@ -6,7 +6,8 @@
     "build": "gulp build",
     "start": "gulp serve:dist"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "gulp": "3.9.0",
     "gulp-autoprefixer": "3.0.1",
     "gulp-angular-templatecache": "1.7.0",
