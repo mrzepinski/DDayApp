@@ -3,11 +3,10 @@
   "version": "0.0.1",
   "scripts": {
     "test": "gulp test",
-    "build": "gulp build",
+    "install": "gulp build",
     "start": "gulp serve:dist"
   },
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "gulp": "3.9.0",
     "gulp-autoprefixer": "3.0.1",
     "gulp-angular-templatecache": "1.7.0",
