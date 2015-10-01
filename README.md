@@ -3,7 +3,7 @@ Delivery Day [D-Day] framework
 
 Reccuring, voluntary programming event, based on the hackathon idea, organized by the Development and Architecture Team and Wolters Kluwer SA, together with employees and business representatives. Work facilities and refreshement will be made available during the event.
 
-# [DEMO](https://ddayapp.herokuapp.com/)
+[DEMO](https://ddayapp.herokuapp.com/)
 
 # Stages
 
