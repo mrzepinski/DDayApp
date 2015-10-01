@@ -91,8 +91,23 @@ gulp.task('other', function () {
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 });
 
+gulp.task('manifest', ['html', 'fonts', 'other'], function () {
+  return gulp.src(conf.paths.dist + '/**/*')
+    .pipe($.manifest({
+      hash: true,
+      preferOnline: true,
+      network: ['*'],
+      filename: 'app.manifest',
+      exclude: [
+        'app.manifest',
+        '**/*.map'
+      ]
+    }))
+    .pipe(gulp.dest(conf.paths.dist));
+});
+
 gulp.task('clean', function () {
   return $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')]);
 });
 
-gulp.task('build', ['html', 'fonts', 'other']);
+gulp.task('build', ['manifest']);
