@@ -50,4 +50,4 @@ The best design will be selected during a secret voting process. Each team will 
 
 # After party
 
-After the end of a long and intencive day all interested people can participate together in celebration party. You can choose the place and formula - if you can handle it!
+After the end of a long and intensive day all interested people can participate together in celebration party. You can choose the place and formula - if you can handle it!
