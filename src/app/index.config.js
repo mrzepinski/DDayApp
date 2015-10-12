@@ -3,7 +3,8 @@
 
   angular
     .module('ddayApp')
-    .config(config);
+    .config(config)
+    .constant('FIREBASE_URL', 'https://ddayappdev.firebaseio.com');
 
   /** @ngInject */
   function config ($logProvider, toastrConfig) {

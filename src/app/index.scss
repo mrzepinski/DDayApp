@@ -4,7 +4,7 @@
  */
 // bower:scss
 // endbower
-@import url(//fonts.googleapis.com/css?family=Roboto:300,400,500,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
 
 @font-face {
   font-family: 'Material Icons';
@@ -43,9 +43,30 @@
   font-feature-settings: 'liga';
 }
 
+html,
+body {
+
+}
+
+body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
 main {
   padding: 20px;
   background: #fafafa;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.clearfix {
+  clear: both;
 }
 
 /**

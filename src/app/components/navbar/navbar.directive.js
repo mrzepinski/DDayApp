@@ -3,24 +3,20 @@
 
   angular
     .module('ddayApp')
-    .directive('navbar', acmeNavbar);
+    .directive('navbar', navbar);
 
   /** @ngInject */
-  function acmeNavbar () {
+  function navbar () {
     return {
       restrict: 'E',
       templateUrl: 'app/components/navbar/navbar.html',
-      scope: {
-        creationDate: '='
-      },
       controller: NavbarController,
-      controllerAs: 'vm',
-      bindToController: true
+      controllerAs: 'navbar'
     };
 
     /** @ngInject */
     function NavbarController () {
-      var vm = this;
+      var ctrl = this;
     }
   }
 

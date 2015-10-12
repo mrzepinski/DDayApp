@@ -2,11 +2,11 @@
   'use strict';
 
   describe('controllers', function () {
-    var vm;
+    var main;
 
     beforeEach(module('ddayApp'));
     beforeEach(inject(function (_$controller_) {
-      vm = _$controller_('MainController');
+      main = _$controller_('MainController');
     }));
 
   });

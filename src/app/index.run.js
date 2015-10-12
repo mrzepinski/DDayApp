@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function runBlock ($log) {
-    $log.debug('runBlock end');
+    $log.info('DDayApp initalized!');
   }
 
 })();

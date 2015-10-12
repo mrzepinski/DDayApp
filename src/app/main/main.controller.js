@@ -7,6 +7,6 @@
 
   /** @ngInject */
   function MainController () {
-    var vm = this;
+    var ctrl = this;
   }
 })();

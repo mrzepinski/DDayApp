@@ -2,7 +2,7 @@
   'use strict';
 
   describe('directive navbar', function () {
-    var vm;
+    var navbar;
     var el;
 
     beforeEach(module('ddayApp'));
@@ -11,7 +11,7 @@
 
       $compile(el)($rootScope.$new());
       $rootScope.$digest();
-      vm = el.isolateScope().vm;
+      navbar = el.isolateScope().vm;
     }));
 
     it('should be compiled', function () {

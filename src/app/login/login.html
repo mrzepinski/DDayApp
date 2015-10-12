@@ -1,0 +1,67 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title mdl-badge" data-badge="♥">DDay</span>
+    </div>
+  </header>
+
+  <main class="mdl-layout__content">
+    <div class="mdl-grid mdl-grid--no-spacing">
+      <div class="mdl-cell mdl-cell--4-col"></div>
+
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
+        <form ng-submit="login.login()">
+          <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Login</h2>
+          </div>
+
+          <div class="mdl-card__supporting-text">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+              <input id="email" class="mdl-textfield__input" type="email" required ng-model="login.data.email" />
+              <label for="email" class="mdl-textfield__label">email</label>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+              <input id="pass" class="mdl-textfield__input" type="password" required ng-model="login.data.pass" />
+              <label for="pass" class="mdl-textfield__label">password</label>
+            </div>
+
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" mdl-upgrade>
+              <input id="confirm" class="mdl-checkbox__input" type="checkbox" ng-model="login.data.confirm" />
+              <span class="mdl-checkbox__label">remember me</span>
+            </label>
+          </div>
+
+          <div class="mdl-card__actions mdl-card--border">
+            <div class="pull-left">
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                      type="button" ui-sref="create-account" mdl-upgrade>
+                Create account
+              </button>
+            </div>
+
+            <div class="pull-right">
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary"
+                      type="submit" mdl-upgrade>
+                Login
+              </button>
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="mdl-card__menu">
+            <a href="" class="mdl-button mdl-js-button mdl-js-ripple-effect"
+               ui-sref="reset-password" mdl-upgrade>
+              reset password
+            </a>
+          </div>
+        </form>
+      </div>
+
+      <div class="mdl-cell mdl-cell--4-col"></div>
+    </div>
+  </main>
+
+</div>
