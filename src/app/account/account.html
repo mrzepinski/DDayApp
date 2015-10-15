@@ -1,0 +1,78 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+  <header class="mdl-layout__header">
+    <navbar></navbar>
+  </header>
+
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">DDay</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+    </nav>
+  </div>
+
+  <main class="mdl-layout__content">
+    <div class="mdl-grid mdl-grid--no-spacing">
+      <div class="mdl-cell mdl-cell--4-col"></div>
+
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect" mdl-upgrade>
+          <div class="mdl-tabs__tab-bar">
+            <a href="#account" class="mdl-tabs__tab is-active">Account</a>
+            <a href="#changePassword" class="mdl-tabs__tab">Change password</a>
+          </div>
+
+          <div id="account" class="mdl-tabs__panel is-active">
+            {{ ::account.profile.email }}
+          </div>
+
+          <div id="changePassword" class="mdl-tabs__panel">
+            <form ng-submit="account.changePassword.action()">
+              <div class="mdl-card__supporting-text">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+                  <input id="oldPass" class="mdl-textfield__input" type="password" required ng-model="account.changePassword.oldPass" />
+                  <label for="oldPass" class="mdl-textfield__label">current password</label>
+                </div>
+
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+                  <input id="newPass" class="mdl-textfield__input" type="password" required ng-model="account.changePassword.newPass" />
+                  <label for="newPass" class="mdl-textfield__label">new password</label>
+                </div>
+
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+                  <input id="confirm" class="mdl-textfield__input" type="password" required ng-model="account.changePassword.confirm" />
+                  <label for="confirm" class="mdl-textfield__label">confirm password</label>
+                </div>
+              </div>
+
+              <div class="mdl-card__actions mdl-card--border">
+                <div class="pull-right">
+                  <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary"
+                          type="submit" mdl-upgrade>
+                    Change password
+                  </button>
+                </div>
+
+                <div class="clearfix"></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="mdl-cell mdl-cell--4-col"></div>
+    </div>
+  </main>
+
+  <footer class="mdl-mini-footer">
+    <div class="mdl-mini-footer__right-section">
+      <div class="mdl-logo">
+        Copyright @ <a href="http://mrzepinski.pl/" target="_blank">Maciej Rzepiński</a>
+      </div>
+    </div>
+  </footer>
+
+</div>

@@ -15,8 +15,10 @@
     };
 
     /** @ngInject */
-    function NavbarController () {
-      var ctrl = this;
+    function NavbarController (Auth) {
+      var vm = this;
+
+      vm.logout = Auth.logout;
     }
   }
 

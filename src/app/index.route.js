@@ -7,24 +7,28 @@
     .run(routeListener);
 
   /** @ngInject */
-
   function routeListener ($rootScope, $state, Auth) {
+    /* eslint-disable */
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
       $rootScope.toState = toState;
       $rootScope.toParams = toParams;
       $rootScope.fromState = fromState;
       $rootScope.fromParams = fromParams;
       if (toState.authenticate && !Auth.isAuthenticated()) {
-        $state.transitionTo('login');
+        $state.transitionTo('auth');
+        event.preventDefault();
+      } else if (!toState.authenticate && Auth.isAuthenticated()) {
+        $state.transitionTo('home');
         event.preventDefault();
       }
     });
+    /* eslint-enable */
   }
 
   /** @ngInject */
   function routerConfig ($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.when('', '/');
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise('/auth');
 
     $stateProvider
       .state('home', {
@@ -34,26 +38,19 @@
         controllerAs: 'main',
         authenticate: true
       })
-      .state('login', {
-        url: '/login',
-        templateUrl: 'app/login/login.html',
-        controller: 'LoginController',
-        controllerAs: 'login',
+      .state('auth', {
+        url: '/auth',
+        templateUrl: 'app/auth/auth.html',
+        controller: 'AuthController',
+        controllerAs: 'auth',
         authenticate: false
       })
-      .state('create-account', {
-        url: '/create-account',
-        templateUrl: 'app/login/create-account.html',
-        controller: 'ResetPasswordController',
-        controllerAs: 'create',
-        authenticate: false
-      })
-      .state('reset-password', {
-        url: '/reset-password',
-        templateUrl: 'app/login/reset-password.html',
-        controller: 'ResetPasswordController',
-        controllerAs: 'reset',
-        authenticate: false
+      .state('account', {
+        url: '/account',
+        templateUrl: 'app/account/account.html',
+        controller: 'AccountController',
+        controllerAs: 'account',
+        authenticate: true
       });
   }
 
