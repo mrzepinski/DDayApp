@@ -69,6 +69,13 @@ main {
   clear: both;
 }
 
+.mdl-progress {
+  display: block;
+  position: relative;
+  height: 4px;
+  width: 100%;
+}
+
 /**
  *  Do not remove the comment below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

@@ -1,4 +1,4 @@
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" mdl-upgrade>
 
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
@@ -48,6 +48,7 @@
                 <div class="clearfix"></div>
               </div>
             </form>
+            <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="auth.login.inProgress" mdl-upgrade></div>
           </div>
 
           <div id="createAccount" class="mdl-tabs__panel">
@@ -80,14 +81,15 @@
                 <div class="clearfix"></div>
               </div>
             </form>
+            <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="auth.createAccount.inProgress" mdl-upgrade></div>
           </div>
 
           <div id="resetPassword" class="mdl-tabs__panel">
             <form ng-submit="auth.resetPassword.action()">
               <div class="mdl-card__supporting-text">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
-                  <input id="email" class="mdl-textfield__input" type="email" ng-model="auth.resetPassword.email" />
-                  <label for="email" class="mdl-textfield__label" required>email</label>
+                  <input id="email" class="mdl-textfield__input" type="email" required ng-model="auth.resetPassword.email" />
+                  <label for="email" class="mdl-textfield__label">email</label>
                 </div>
               </div>
 
@@ -102,6 +104,7 @@
                 <div class="clearfix"></div>
               </div>
             </form>
+            <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="auth.resetPassword.inProgress" mdl-upgrade></div>
           </div>
         </div>
       </div>

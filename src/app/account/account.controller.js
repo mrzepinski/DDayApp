@@ -6,31 +6,44 @@
     .controller('AccountController', AccountController);
 
   /** @ngInject */
-  function AccountController (Auth, FirebaseRef, $firebaseObject, $log) {
+  function AccountController (Auth, FirebaseRef, $firebaseObject, toastr) {
     var vm = this;
 
     Auth.getLoggedIn().then(function (loggedIn) {
       vm.loggedIn = loggedIn;
       vm.profile = $firebaseObject(FirebaseRef.child('users/' + vm.loggedIn.uid));
-      $log.info(vm.loggedIn);
-      $log.info(vm.profile);
     });
 
     vm.changePassword = {
       oldPass: '',
       newPass: '',
       confirm: '',
+      inProgress: false,
       action: changePassword
     };
 
     function changePassword () {
       if (vm.changePassword.newPass !== vm.changePassword.confirm) {
-        // TODO
-        $log.error('Passwords does not match!');
+        toastr.error('Passwords does not match!');
         return;
       }
 
-      Auth.changePassword(vm.profile.email, vm.changePassword.oldPass, vm.changePassword.newPass);
+      vm.changePassword.inProgress = true;
+      toastr.clear();
+
+      Auth.changePassword(vm.profile.email, vm.changePassword.oldPass, vm.changePassword.newPass).then(function () {
+        vm.changePassword.oldPass = '';
+        vm.changePassword.newPass = '';
+        vm.changePassword.confirm = '';
+        toastr.success('Your password has been changed.');
+      }, handleError).finally(function () {
+        vm.changePassword.inProgress = false;
+      });
     }
+
+    function handleError (error) {
+      toastr.error(error.toString());
+    }
+
   }
 })();

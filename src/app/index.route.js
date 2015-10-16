@@ -31,7 +31,7 @@
     $urlRouterProvider.otherwise('/auth');
 
     $stateProvider
-      .state('home', {
+      .state('dashboard', {
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainController',

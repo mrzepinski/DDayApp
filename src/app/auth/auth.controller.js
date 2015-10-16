@@ -6,13 +6,14 @@
     .controller('AuthController', AuthController);
 
   /** @ngInject */
-  function AuthController (Auth, $log) {
+  function AuthController (Auth, $state, toastr, $log) {
     var vm = this;
 
     vm.login = {
       email: '',
       pass: '',
       rememberMe: false,
+      inProgress: false,
       action: login
     };
 
@@ -20,30 +21,64 @@
       email: '',
       pass: '',
       confirm: '',
+      inProgress: false,
       action: createAccount
     };
 
     vm.resetPassword = {
       email: '',
+      inProgress: false,
       action: resetPassword
     };
 
     function login () {
-      Auth.login(vm.login.email, vm.login.pass, vm.login.rememberMe);
+      toastr.clear();
+      vm.login.inProgress = true;
+
+      Auth.login(vm.login.email, vm.login.pass, vm.login.rememberMe).then(function () {
+        vm.login.email = '';
+        vm.login.pass = '';
+        vm.login.rememberMe = false;
+        $state.transitionTo('account');
+      }, handleError).finally(function () {
+        vm.login.inProgress = false;
+      });
     }
 
     function createAccount () {
+      toastr.clear();
+
       if (vm.createAccount.pass !== vm.createAccount.confirm) {
-        // TODO
-        $log.error('Passwords does not match!');
+        toastr.error('Passwords does not match!');
         return;
       }
 
-      Auth.createAccount(vm.createAccount.email, vm.createAccount.pass);
+      vm.createAccount.inProgress = true;
+
+      Auth.createAccount(vm.createAccount.email, vm.createAccount.pass).then(function () {
+        vm.createAccount.email = '';
+        vm.createAccount.pass = '';
+        vm.createAccount.confirm = '';
+        toastr.success('Your account has been created.');
+      }, handleError).finally(function () {
+        vm.createAccount.inProgress = false;
+      });
     }
 
     function resetPassword () {
-      Auth.resetPassword(vm.resetPassword.email);
+      toastr.clear();
+      vm.resetPassword.inProgress = true;
+
+      Auth.resetPassword(vm.resetPassword.email).then(function () {
+        vm.resetPassword.email = '';
+        toastr.success('Check your inbox!');
+      }, handleError).finally(function () {
+        vm.resetPassword.inProgress = false;
+      });
+    }
+
+    function handleError (error) {
+      toastr.error(error.toString());
     }
 
   }

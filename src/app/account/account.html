@@ -1,24 +1,14 @@
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" mdl-upgrade>
 
   <header class="mdl-layout__header">
     <navbar></navbar>
   </header>
 
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">DDay</span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-    </nav>
-  </div>
-
   <main class="mdl-layout__content">
     <div class="mdl-grid mdl-grid--no-spacing">
-      <div class="mdl-cell mdl-cell--4-col"></div>
+      <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
 
-      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--8-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
         <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect" mdl-upgrade>
           <div class="mdl-tabs__tab-bar">
             <a href="#account" class="mdl-tabs__tab is-active">Account</a>
@@ -26,7 +16,14 @@
           </div>
 
           <div id="account" class="mdl-tabs__panel is-active">
-            {{ ::account.profile.email }}
+            <div class="mdl-card__supporting-text mdl-grid">
+              <div class="mdl-cell mdl-cell--2-col">
+                <img src="" ng-src="{{ ::account.loggedIn.password.profileImageURL }}" alt="{{ ::account.profile.name }}" />
+              </div>
+              <div class="mdl-cell mdl-cell--10-col">
+                <h5>{{ ::account.profile.email }}</h5>
+              </div>
+            </div>
           </div>
 
           <div id="changePassword" class="mdl-tabs__panel">
@@ -37,10 +34,14 @@
                   <label for="oldPass" class="mdl-textfield__label">current password</label>
                 </div>
 
+                <div class="mdl-layout-spacer"></div>
+
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
                   <input id="newPass" class="mdl-textfield__input" type="password" required ng-model="account.changePassword.newPass" />
                   <label for="newPass" class="mdl-textfield__label">new password</label>
                 </div>
+
+                <div class="mdl-layout-spacer"></div>
 
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
                   <input id="confirm" class="mdl-textfield__input" type="password" required ng-model="account.changePassword.confirm" />
@@ -59,11 +60,12 @@
                 <div class="clearfix"></div>
               </div>
             </form>
+            <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="account.changePassword.inProgress" mdl-upgrade></div>
           </div>
         </div>
       </div>
 
-      <div class="mdl-cell mdl-cell--4-col"></div>
+      <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
     </div>
   </main>
 

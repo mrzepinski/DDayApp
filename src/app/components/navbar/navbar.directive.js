@@ -9,6 +9,7 @@
   function navbar () {
     return {
       restrict: 'E',
+      transclude: true,
       templateUrl: 'app/components/navbar/navbar.html',
       controller: NavbarController,
       controllerAs: 'navbar'
