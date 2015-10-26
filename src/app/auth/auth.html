@@ -22,14 +22,14 @@
             <form ng-submit="auth.login.action()">
               <div class="mdl-card__supporting-text">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
-                  <input id="email" class="mdl-textfield__input" type="email" required ng-model="auth.login.email" />
+                  <input id="email" class="mdl-textfield__input" type="email" ng-model="auth.login.email" />
                   <label for="email" class="mdl-textfield__label">email</label>
                 </div>
 
                 <div class="mdl-layout-spacer"></div>
 
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
-                  <input id="pass" class="mdl-textfield__input" type="password" required ng-model="auth.login.pass" />
+                  <input id="pass" class="mdl-textfield__input" type="password" ng-model="auth.login.pass" />
                   <label for="pass" class="mdl-textfield__label">password</label>
                 </div>
 
@@ -59,21 +59,21 @@
             <form ng-submit="auth.createAccount.action()">
               <div class="mdl-card__supporting-text">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
-                  <input id="email" class="mdl-textfield__input" type="email" required ng-model="auth.createAccount.email" />
+                  <input id="email" class="mdl-textfield__input" type="email" ng-model="auth.createAccount.email" />
                   <label for="email" class="mdl-textfield__label">email</label>
                 </div>
 
                 <div class="mdl-layout-spacer"></div>
 
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
-                  <input id="pass" class="mdl-textfield__input" type="password" required ng-model="auth.createAccount.pass" />
+                  <input id="pass" class="mdl-textfield__input" type="password" ng-model="auth.createAccount.pass" />
                   <label for="pass" class="mdl-textfield__label">password</label>
                 </div>
 
                 <div class="mdl-layout-spacer"></div>
 
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
-                  <input id="confirm" class="mdl-textfield__input" type="password" required ng-model="auth.createAccount.confirm" />
+                  <input id="confirm" class="mdl-textfield__input" type="password" ng-model="auth.createAccount.confirm" />
                   <label for="confirm" class="mdl-textfield__label">confirm password</label>
                 </div>
               </div>
@@ -96,7 +96,7 @@
             <form ng-submit="auth.resetPassword.action()">
               <div class="mdl-card__supporting-text">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
-                  <input id="email" class="mdl-textfield__input" type="email" required ng-model="auth.resetPassword.email" />
+                  <input id="email" class="mdl-textfield__input" type="email" ng-model="auth.resetPassword.email" />
                   <label for="email" class="mdl-textfield__label">email</label>
                 </div>
               </div>
@@ -120,5 +120,7 @@
       <div class="mdl-cell mdl-cell--3-col-desktop mdl-cell--hide-phone mdl-cell--hide-tablet"></div>
     </div>
   </main>
+
+  <footer></footer>
 
 </div>

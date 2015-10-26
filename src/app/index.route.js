@@ -18,7 +18,7 @@
         $state.transitionTo('auth');
         event.preventDefault();
       } else if (!toState.authenticate && Auth.isAuthenticated()) {
-        $state.transitionTo('home');
+        $state.transitionTo('dashboard');
         event.preventDefault();
       }
     });
@@ -50,6 +50,13 @@
         templateUrl: 'app/account/account.html',
         controller: 'AccountController',
         controllerAs: 'account',
+        authenticate: true
+      })
+      .state('project', {
+        url: '/project',
+        templateUrl: 'app/project/project.html',
+        controller: 'ProjectController',
+        controllerAs: 'project',
         authenticate: true
       });
   }

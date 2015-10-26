@@ -1,0 +1,170 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" mdl-upgrade>
+
+  <navbar>
+    <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="project.inProgress" mdl-upgrade></div>
+  </navbar>
+
+  <main class="mdl-layout__content">
+    <div class="dday-section mdl-grid" ng-if="!project.inProgress">
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+        <div class="mdl-card__supporting-text">
+          <div ng-if="!project.loaded">
+            <h3>Create your project</h3>
+
+            <div class="mdl-card__supporting-text">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+                <input id="title" class="mdl-textfield__input" type="text" ng-model="project.model.title" />
+                <label for="title" class="mdl-textfield__label">title</label>
+              </div>
+
+              <div class="mdl-layout-spacer"></div>
+
+              <div class="mdl-grid mdl-grid--no-spacing">
+                <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+                    <textarea id="description" class="mdl-textfield__input" rows="8" ng-model="project.model.description"></textarea>
+                    <label for="description" class="mdl-textfield__label">description</label>
+                  </div>
+                  <div class="mdl-layout-spacer"></div>
+                  <small>(you can use <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">markdown syntax</a>)</small>
+                </div>
+                <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
+                  <div class="dday-project-desc">
+                    <scrollable always-visible="true">
+                      <div class="text" btf-markdown="project.model.description"></div>
+                    </scrollable>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mdl-layout-spacer"></div>
+
+              <h5>Todos</h5>
+
+              <p ng-repeat="todo in project.model.todos track by $index">
+                {{ todo.name }}
+                <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored"
+                        ng-click="project.removeTodo($index)" mdl-upgrade>
+                  <i class="material-icons">cancel</i>
+                </button>
+              </p>
+
+              <form ng-submit="project.createTodo()">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+                  <input id="name" class="mdl-textfield__input" type="text" ng-model="project.todo.name" />
+                  <label for="name" class="mdl-textfield__label">thing to do</label>
+                </div>
+
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect"
+                        type="submit" mdl-upgrade>
+                  <i class="material-icons">add</i>
+                </button>
+              </form>
+
+              <h5>Team</h5>
+
+              <p ng-repeat="person in project.model.team track by $index">
+                <img src="" gravatar-src="person.email" gravatar-size="34" alt="gravatar" />
+                {{ person.email }}
+                <small ng-if="$first">(leader)</small>
+                <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored"
+                        ng-if="!$first" ng-click="project.removePerson(project.model.team, $index)" mdl-upgrade>
+                  <i class="material-icons">cancel</i>
+                </button>
+              </p>
+
+              <form ng-submit="project.createPerson()">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+                  <input id="email" class="mdl-textfield__input" type="email" ng-model="project.person.email" />
+                  <label for="email" class="mdl-textfield__label">e-mail address</label>
+                </div>
+
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect"
+                        type="submit" mdl-upgrade>
+                  <i class="material-icons">add</i>
+                </button>
+              </form>
+            </div>
+
+            <div class="mdl-card__actions mdl-card--border">
+              <div class="pull-right">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--primary"
+                        type="submit" ng-click="project.createProject()" mdl-upgrade>
+                  <i class="material-icons">add</i>
+                </button>
+              </div>
+
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="project.creatingInProgress" mdl-upgrade></div>
+          </div>
+
+          <div ng-if="project.loaded">
+            <h3>{{ project.model.title }}</h3>
+
+            <div btf-markdown="project.model.description"></div>
+
+            <h5>Todos</h5>
+
+            <p ng-repeat="todo in project.model.todos track by $index">
+              {{ todo.name }}
+              <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored"
+                      ng-click="project.removeTodo($index)" mdl-upgrade>
+                <i class="material-icons">cancel</i>
+              </button>
+            </p>
+
+            <form ng-submit="project.createTodo()">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+                <input id="name" class="mdl-textfield__input" type="text" ng-model="project.todo.name" />
+                <label for="name" class="mdl-textfield__label">thing to do</label>
+              </div>
+
+              <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect"
+                      type="submit" mdl-upgrade>
+                <i class="material-icons">add</i>
+              </button>
+            </form>
+
+            <h5>Team</h5>
+
+            <p ng-repeat="person in project.model.team track by $index">
+              <img src="" gravatar-src="person.email" gravatar-size="34" alt="gravatar" />
+              {{ person.email }}
+              <small ng-if="$first">(leader)</small>
+              <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored"
+                      ng-if="!$first" ng-click="project.removePerson($index)" mdl-upgrade>
+                <i class="material-icons">cancel</i>
+              </button>
+            </p>
+
+            <form ng-submit="project.createPerson()">
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+                <input id="email" class="mdl-textfield__input" type="email" ng-model="project.person.email" />
+                <label for="email" class="mdl-textfield__label">e-mail address</label>
+              </div>
+
+              <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect"
+                      type="submit" mdl-upgrade>
+                <i class="material-icons">add</i>
+              </button>
+            </form>
+
+            <div class="mdl-card__actions mdl-card--border">
+              <div class="pull-right">
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"
+                        type="button" ng-click="project.removeProject()" mdl-upgrade>
+                  <i class="material-icons">cancel</i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer></footer>
+
+</div>

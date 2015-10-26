@@ -6,7 +6,7 @@
     .controller('AuthController', AuthController);
 
   /** @ngInject */
-  function AuthController (Auth, $state, toastr, $log) {
+  function AuthController (Auth, $state, toastr) {
     var vm = this;
 
     vm.login = {
@@ -47,7 +47,6 @@
 
     function createAccount () {
       toastr.clear();
-
       if (vm.createAccount.pass !== vm.createAccount.confirm) {
         toastr.error('Passwords does not match!');
         return;
@@ -60,6 +59,7 @@
         vm.createAccount.pass = '';
         vm.createAccount.confirm = '';
         toastr.success('Your account has been created.');
+        $state.transitionTo('account');
       }, handleError).finally(function () {
         vm.createAccount.inProgress = false;
       });
@@ -78,6 +78,7 @@
     }
 
     function handleError (error) {
+      toastr.clear();
       toastr.error(error.toString());
     }
 

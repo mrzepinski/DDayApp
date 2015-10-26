@@ -57,6 +57,19 @@ main {
   background: #fafafa;
 }
 
+.dday-section {
+  margin: 0 auto;
+  max-width: 1140px;
+}
+
+.dday-project-desc {
+  height: 150px;
+
+  .text {
+    padding-right: 17px;
+  }
+}
+
 .pull-left {
   float: left;
 }

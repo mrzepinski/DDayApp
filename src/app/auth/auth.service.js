@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function Auth ($firebaseAuth, FirebaseRef, $q, $timeout, $state) {
-    var FirebaseAuth = $firebaseAuth(FirebaseRef);
+    var FirebaseAuth = $firebaseAuth(FirebaseRef.main);
 
     return {
       isAuthenticated: isAuthenticated,
@@ -56,21 +56,22 @@
         }).then(createProfile).then(resolve, reject);
 
         function createProfile (user) {
-          var ref = FirebaseRef.child('users/' + user.uid);
-          var def = $q.defer();
-          ref.set({
-            email: email,
-            name: firstPartOfEmail(email)
-          }, function (err) {
-            $timeout(function () {
-              if (err) {
-                def.reject(err);
-              } else {
-                def.resolve(ref);
-              }
+          var ref = FirebaseRef.userById(user.uid);
+
+          return $q(function (resolve, reject) {
+            ref.set({
+              email: email,
+              name: firstPartOfEmail(email)
+            }, function (err) {
+              $timeout(function () {
+                if (err) {
+                  reject(err);
+                } else {
+                  resolve(ref);
+                }
+              });
             });
           });
-          return def.promise;
 
           function firstPartOfEmail (email) {
             return email.substr(0, email.indexOf('@')) || '';

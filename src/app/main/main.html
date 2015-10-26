@@ -1,19 +1,38 @@
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" mdl-upgrade>
 
-  <header class="mdl-layout__header">
-    <navbar></navbar>
-  </header>
+  <navbar>
+    <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="main.inProgress" mdl-upgrade></div>
+  </navbar>
 
   <main class="mdl-layout__content">
-    CONTENT
-  </main>
+    <div class="dday-section mdl-grid" ng-if="!main.inProgress">
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop"
+           ng-repeat="project in projects track by $index" ng-if="projects.length">
+        <div class="mdl-card__title mdl-color--primary mdl-color-text--primary-contrast">
+          <div class="mdl-card__title-text">{{ ::project.title }}</div>
+        </div>
 
-  <footer class="mdl-mini-footer">
-    <div class="mdl-mini-footer__right-section">
-      <div class="mdl-logo">
-        Copyright @ <a href="http://mrzepinski.pl/" target="_blank">Maciej Rzepiński</a>
+        <div class="dday-project-desc mdl-card__supporting-text">
+          <scrollable always-visible="true">
+            <div class="text" btf-markdown="project.description"></div>
+          </scrollable>
+        </div>
+
+        <div class="mdl-card__actions mdl-card--border">
+          <div class="pull-right">
+            <span ng-repeat="person in project.team track by $index">
+              <img src="" gravatar-src="person.email" gravatar-size="34" alt="gravatar" />
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mdl-cell mdl-cell--12-col" ng-if="!projects.length">
+        <h2>We don't have projects yet ;(</h2>
       </div>
     </div>
-  </footer>
+  </main>
+
+  <footer></footer>
 
 </div>

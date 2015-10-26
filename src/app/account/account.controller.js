@@ -6,42 +6,61 @@
     .controller('AccountController', AccountController);
 
   /** @ngInject */
-  function AccountController (Auth, FirebaseRef, $firebaseObject, toastr) {
+  function AccountController (Auth, toastr) {
     var vm = this;
+
+    vm.inProgress = true;
 
     Auth.getLoggedIn().then(function (loggedIn) {
       vm.loggedIn = loggedIn;
-      vm.profile = $firebaseObject(FirebaseRef.child('users/' + vm.loggedIn.uid));
+    }).finally(function () {
+      vm.inProgress = false;
     });
 
-    vm.changePassword = {
+    vm.newPassword = {
       oldPass: '',
       newPass: '',
       confirm: '',
-      inProgress: false,
-      action: changePassword
+      inProgress: false
     };
 
+    vm.changePassword = changePassword;
+
     function changePassword () {
-      if (vm.changePassword.newPass !== vm.changePassword.confirm) {
-        toastr.error('Passwords does not match!');
+      toastr.clear();
+
+      var oldPass = vm.newPassword.oldPass.trim();
+      if (!oldPass) {
+        toastr.warning('Your need to type current password!');
         return;
       }
 
-      vm.changePassword.inProgress = true;
-      toastr.clear();
+      var newPass = vm.newPassword.newPass.trim();
+      if (!newPass) {
+        toastr.warning('What is your new password?');
+        return;
+      }
 
-      Auth.changePassword(vm.profile.email, vm.changePassword.oldPass, vm.changePassword.newPass).then(function () {
-        vm.changePassword.oldPass = '';
-        vm.changePassword.newPass = '';
-        vm.changePassword.confirm = '';
+      var confirm = vm.newPassword.confirm.trim();
+      if (newPass !== confirm) {
+        toastr.warning('Passwords does not match!');
+        return;
+      }
+
+      vm.newPassword.inProgress = true;
+
+      Auth.changePassword(vm.loggedIn.password.email, oldPass, newPass).then(function () {
+        vm.newPassword.oldPass = '';
+        vm.newPassword.newPass = '';
+        vm.newPassword.confirm = '';
         toastr.success('Your password has been changed.');
       }, handleError).finally(function () {
-        vm.changePassword.inProgress = false;
+        vm.newPassword.inProgress = false;
       });
     }
 
     function handleError (error) {
+      toastr.clear();
       toastr.error(error.toString());
     }
 
