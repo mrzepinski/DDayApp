@@ -10,6 +10,7 @@
 ### project
 
 - edit title & description
+- done / undone todos
 - upload & resize using base64 logo (use default otherwise)
 
 ### dashboard
