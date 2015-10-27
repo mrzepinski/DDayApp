@@ -1,6 +1,6 @@
 # TODOs
 
-### globaly
+### globally
 
 - Firebase - set rights per objects & collections
 - tests!
