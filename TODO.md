@@ -15,7 +15,6 @@
 ### dashboard
 
 - project progress (done TODOs / all TODOs)
-- make it visible for non-logged
 
 ### voting - TODO at all
 

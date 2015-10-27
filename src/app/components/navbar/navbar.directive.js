@@ -20,6 +20,7 @@
     function NavbarController (Auth) {
       var vm = this;
 
+      vm.isAuthenticated = Auth.isAuthenticated();
       vm.logout = Auth.logout;
     }
   }

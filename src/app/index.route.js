@@ -14,10 +14,11 @@
       $rootScope.toParams = toParams;
       $rootScope.fromState = fromState;
       $rootScope.fromParams = fromParams;
-      if (toState.authenticate && !Auth.isAuthenticated()) {
+      var isAuthenticated = Auth.isAuthenticated();
+      if (toState.authenticate && !isAuthenticated) {
         $state.transitionTo('auth');
         event.preventDefault();
-      } else if (!toState.authenticate && Auth.isAuthenticated()) {
+      } else if (!toState.authenticate && isAuthenticated) {
         $state.transitionTo('dashboard');
         event.preventDefault();
       }
@@ -36,7 +37,7 @@
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
         controllerAs: 'main',
-        authenticate: true
+        authenticate: false
       })
       .state('auth', {
         url: '/auth',
