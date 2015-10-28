@@ -16,6 +16,7 @@
 ### dashboard
 
 - project progress (done TODOs / all TODOs)
+- number of projects / people / todos
 
 ### voting - TODO at all
 
