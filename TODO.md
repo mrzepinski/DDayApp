@@ -12,11 +12,12 @@
 - edit title & description
 - done / undone todos
 - upload & resize using base64 logo (use default otherwise)
+- add technologies tags
 
 ### dashboard
 
 - project progress (done TODOs / all TODOs)
-- number of projects / people / todos
+- stats - number of projects / people / todos
 
 ### voting - TODO at all
 
@@ -25,9 +26,13 @@
 - animations of votes
 - displaying progress of all votes
 - show lables at the end of voting (show 10 secs timeout)
-- make it visible for non-logged
+- make it visible for non-logged - on dashboard
 
 ### cms - TODO at all
 
 - set start / end datetime
 - timer countdown page visible for non-logged
+
+### communication
+ 
+- chat / shoutbox
