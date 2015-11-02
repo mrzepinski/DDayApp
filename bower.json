@@ -20,7 +20,8 @@
     "lodash": "3.10.1",
     "angular-gravatar": "0.4.1",
     "angular-markdown-directive": "0.3.1",
-    "angular-nanoscroller": "0.2.1"
+    "angular-nanoscroller": "0.2.1",
+    "angular-chart.js": "0.8.5"
   },
   "devDependencies": {
     "angular-mocks": "1.4.7",

@@ -39,7 +39,9 @@
           vm.model = angular.extend({}, vm.raw);
           vm.inProgress = false;
         }
-      }, handleError);
+      }, handleError).finally(function () {
+        vm.inProgress = false;
+      });
     });
 
     vm.creatingInProgress = false;
@@ -73,6 +75,7 @@
         return;
       }
 
+      vm.creatingInProgress = false;
       Project.create(vm.model).then(function (id) {
         vm.user.projectId = id;
         vm.user.$save();
@@ -83,7 +86,9 @@
           vm.creatingInProgress = false;
           toastr.success('Your project was successfully created!');
         });
-      }, handleError);
+      }, handleError).finally(function () {
+        vm.creatingInProgress = false;
+      });
     }
 
     function removeProject () {

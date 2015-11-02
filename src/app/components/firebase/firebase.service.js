@@ -9,12 +9,15 @@
   function FirebaseRef ($window, FIREBASE_URL) {
     var main = new $window.Firebase(FIREBASE_URL);
     var projects = new $window.Firebase([FIREBASE_URL, 'projects'].join('/'));
+    var votes = new $window.Firebase([FIREBASE_URL, 'votes'].join('/'));
 
     return {
       main: main,
       userById: userById,
       projects: projects,
-      projectById: projectById
+      projectById: projectById,
+      votes: votes,
+      voteById: voteById
     };
 
     function userById (id) {
@@ -23,6 +26,10 @@
 
     function projectById (id) {
       return new $window.Firebase([FIREBASE_URL, 'projects', id].join('/'));
+    }
+
+    function voteById (id) {
+      return new $window.Firebase([FIREBASE_URL, 'votes', id].join('/'));
     }
 
   }

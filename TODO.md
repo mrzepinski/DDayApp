@@ -16,9 +16,6 @@
 
 ### dashboard
 
-- project progress (done TODOs / all TODOs)
-- stats - number of projects / people / todos
-
 ### voting - TODO at all
 
 - add optional person with voting rights

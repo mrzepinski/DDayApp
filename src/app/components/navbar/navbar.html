@@ -1,15 +1,27 @@
 <header class="mdl-layout__header mdl-layout__header--scroll">
   <div class="mdl-layout__header-row">
-    <span class="mdl-layout-title mdl-badge" data-badge="♥">DDay</span>
+    <span class="mdl-layout-title mdl-badge" data-badge="™">DDay</span>
 
     <div class="mdl-layout-spacer"></div>
 
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="" ui-sref="dashboard">Dashboard</a>
-      <a class="mdl-navigation__link" href="" ng-if="navbar.isAuthenticated" ui-sref="project">Project</a>
-      <a class="mdl-navigation__link" href="" ng-if="navbar.isAuthenticated" ui-sref="account">Account</a>
-      <a class="mdl-navigation__link" href="" ng-if="navbar.isAuthenticated" ng-click="navbar.logout()">Logout</a>
-      <a class="mdl-navigation__link" href="" ng-if="!navbar.isAuthenticated" ui-sref="auth">Login</a>
+      <a class="mdl-navigation__link" href=""
+         ui-sref-active="mdl-navigation__link--current" ui-sref="dashboard">Dashboard</a>
+
+      <a class="mdl-navigation__link" href="" ng-if="navbar.isAuthenticated"
+         ui-sref-active="mdl-navigation__link--current" ui-sref="project">Project</a>
+
+      <a class="mdl-navigation__link" href="" ng-if="navbar.isAuthenticated"
+         ui-sref-active="mdl-navigation__link--current" ui-sref="voting">Voting</a>
+
+      <a class="mdl-navigation__link" href="" ng-if="navbar.isAuthenticated"
+         ui-sref-active="mdl-navigation__link--current" ui-sref="account">Account</a>
+
+      <a class="mdl-navigation__link" href="" ng-if="navbar.isAuthenticated"
+         ui-sref-active="mdl-navigation__link--current" ng-click="navbar.logout()">Logout</a>
+
+      <a class="mdl-navigation__link" href="" ng-if="!navbar.isAuthenticated"
+         ui-sref-active="mdl-navigation__link--current" ui-sref="auth">Login</a>
     </nav>
   </div>
 

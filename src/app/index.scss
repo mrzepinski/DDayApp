@@ -6,6 +6,8 @@
 // endbower
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
 
+@import "../../bower_components/material-design-lite/src/variables";
+
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
@@ -19,17 +21,17 @@
 }
 
 .material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px; /* Preferred icon size */
   display: inline-block;
   width: 1em;
   height: 1em;
-  line-height: 1;
   text-transform: none;
-  letter-spacing: normal;
   word-wrap: normal;
+  letter-spacing: normal;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  font-family: 'Material Icons';
+  line-height: 1;
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
@@ -70,6 +72,25 @@ main {
   }
 }
 
+.dday-dashboard-stats {
+  height: 240px;
+  text-align: center;
+
+  &--value {
+    font-size: 15em;
+    line-height: 1em;
+  }
+
+  &--title {
+    font-size: 2em;
+  }
+}
+
+.dday-dashboard-project-progress.mdl-progress {
+  width: 40%;
+  height: 34px;
+}
+
 .pull-left {
   float: left;
 }
@@ -83,10 +104,22 @@ main {
 }
 
 .mdl-progress {
-  display: block;
   position: relative;
-  height: 4px;
+  display: block;
   width: 100%;
+  height: 4px;
+}
+
+.mdl-card {
+  min-height: 1px;
+}
+
+.mdl-card__supporting-text {
+  width: 95%;
+}
+
+.mdl-navigation__link--current {
+  background-color: unquote("rgb(#{$color-primary-dark})");
 }
 
 /**

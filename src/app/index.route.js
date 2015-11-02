@@ -14,11 +14,19 @@
       $rootScope.toParams = toParams;
       $rootScope.fromState = fromState;
       $rootScope.fromParams = fromParams;
+
+      if ($state.current.abstract) {
+        return;
+      }
+
       var isAuthenticated = Auth.isAuthenticated();
       if (toState.authenticate && !isAuthenticated) {
         $state.transitionTo('auth');
         event.preventDefault();
       } else if (!toState.authenticate && isAuthenticated) {
+        if (_.contains([$state.current.name, toState.name], 'dashboard')) {
+          return;
+        }
         $state.transitionTo('dashboard');
         event.preventDefault();
       }
@@ -36,15 +44,13 @@
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
-        controllerAs: 'main',
-        authenticate: false
+        controllerAs: 'main'
       })
       .state('auth', {
         url: '/auth',
         templateUrl: 'app/auth/auth.html',
         controller: 'AuthController',
-        controllerAs: 'auth',
-        authenticate: false
+        controllerAs: 'auth'
       })
       .state('account', {
         url: '/account',
@@ -58,6 +64,13 @@
         templateUrl: 'app/project/project.html',
         controller: 'ProjectController',
         controllerAs: 'project',
+        authenticate: true
+      })
+      .state('voting', {
+        url: '/voting',
+        templateUrl: 'app/voting/voting.html',
+        controller: 'VotingController',
+        controllerAs: 'voting',
         authenticate: true
       });
   }
