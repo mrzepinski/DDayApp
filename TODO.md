@@ -6,6 +6,7 @@
 - tests!
 - travis CI (after tests)
 - README on site
+- responsive header
 
 ### project
 
