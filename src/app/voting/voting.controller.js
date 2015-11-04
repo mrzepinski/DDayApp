@@ -22,20 +22,6 @@
       vm.loggedIn = loggedIn;
       $firebaseObject(FirebaseRef.userById(vm.loggedIn.uid)).$loaded(function (user) {
         vm.user = user;
-        if (vm.user.projectId) {
-          Vote.findById(vm.user.projectId).$loaded(function (project) {
-            vm.model = project;
-            vm.loaded = true;
-          }, handleError).finally(function () {
-            vm.inProgress = false;
-          });
-        } else {
-          vm.raw.team.push({
-            email: vm.loggedIn.password.email
-          });
-          vm.model = angular.extend({}, vm.raw);
-          vm.inProgress = false;
-        }
       }, handleError);
     });
 

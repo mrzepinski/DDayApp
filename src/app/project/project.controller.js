@@ -18,7 +18,7 @@
       team: []
     };
 
-    vm.loaded = false;
+    vm.addOrUpdateMode = true;
     vm.model = null;
 
     Auth.getLoggedIn().then(function (loggedIn) {
@@ -28,7 +28,7 @@
         if (vm.user.projectId) {
           Project.findById(vm.user.projectId).$loaded(function (project) {
             vm.model = project;
-            vm.loaded = true;
+            vm.addOrUpdateMode = false;
           }, handleError).finally(function () {
             vm.inProgress = false;
           });
@@ -44,8 +44,9 @@
       });
     });
 
-    vm.creatingInProgress = false;
-    vm.createProject = createProject;
+    vm.addOrUpdateInProgress = false;
+    vm.updateMode = updateMode;
+    vm.addOrUpdateProject = addOrUpdateProject;
     vm.removeProject = removeProject;
 
     vm.todo = {
@@ -54,6 +55,7 @@
 
     vm.createTodo = createTodo;
     vm.removeTodo = removeTodo;
+    vm.toggleTodo = toggleTodo;
 
     vm.person = {
       email: ''
@@ -62,7 +64,11 @@
     vm.createPerson = createPerson;
     vm.removePerson = removePerson;
 
-    function createProject () {
+    function updateMode () {
+      vm.addOrUpdateMode = true;
+    }
+
+    function addOrUpdateProject () {
       var title = vm.model.title.trim();
       if (!title) {
         toastr.warning('You need to type a title!');
@@ -75,29 +81,40 @@
         return;
       }
 
-      vm.creatingInProgress = false;
+      vm.addOrUpdateInProgress = true;
+
+      if (angular.isFunction(vm.model.$save)) {
+        vm.model.$save().then(function () {
+          vm.addOrUpdateMode = false;
+          toastr.success('Your project was successfully updated!');
+        }, handleError).finally(function () {
+          vm.addOrUpdateInProgress = false;
+        });
+        return;
+      }
+
       Project.create(vm.model).then(function (id) {
         vm.user.projectId = id;
-        vm.user.$save();
+        vm.user.$save().then(null, handleError);
         Project.findById(vm.user.projectId).$loaded(function (data) {
           vm.model = data;
-          vm.loaded = true;
+          vm.addOrUpdateMode = false;
         }, handleError).finally(function () {
-          vm.creatingInProgress = false;
+          vm.addOrUpdateInProgress = false;
           toastr.success('Your project was successfully created!');
         });
       }, handleError).finally(function () {
-        vm.creatingInProgress = false;
+        vm.addOrUpdateInProgress = false;
       });
     }
 
     function removeProject () {
       vm.inProgress = true;
       vm.model.$remove().then(function () {
-        vm.loaded = false;
+        vm.addOrUpdateMode = true;
         vm.model = angular.extend({}, vm.raw);
         vm.user.projectId = null;
-        vm.user.$save();
+        vm.user.$save().then(null, handleError);
         toastr.success('Your project has been removed!');
       }, handleError).finally(function () {
         vm.inProgress = false;
@@ -115,7 +132,7 @@
         done: false
       });
       if (angular.isFunction(vm.model.$save)) {
-        vm.model.$save();
+        vm.model.$save().then(null, handleError);
       }
       vm.todo.name = '';
     }
@@ -123,7 +140,13 @@
     function removeTodo ($index) {
       vm.model.todos.splice($index, 1);
       if (angular.isFunction(vm.model.$save)) {
-        vm.model.$save();
+        vm.model.$save().then(null, handleError);
+      }
+    }
+
+    function toggleTodo () {
+      if (angular.isFunction(vm.model.$save)) {
+        vm.model.$save().then(null, handleError);
       }
     }
 
@@ -137,7 +160,7 @@
         email: email
       });
       if (angular.isFunction(vm.model.$save)) {
-        vm.model.$save();
+        vm.model.$save().then(null, handleError);
       }
       vm.person.email = '';
     }
@@ -145,7 +168,7 @@
     function removePerson ($index) {
       vm.model.team.splice($index, 1);
       if (angular.isFunction(vm.model.$save)) {
-        vm.model.$save();
+        vm.model.$save().then(null, handleError);
       }
     }
 

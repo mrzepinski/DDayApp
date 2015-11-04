@@ -10,7 +10,7 @@
   function mdlUpgrade ($window, $timeout) {
     return {
       restrict: 'A',
-      priority: 2,
+      priority: 100,
       compile: function compileFn () {
         return {
           post: function postLink ($scope, $element) {
@@ -27,14 +27,12 @@
   function mdlProgress ($timeout) {
     return {
       restrict: 'A',
-      priority: 1,
+      priority: 500,
       compile: function compileFn () {
         return {
           post: function postLink ($scope, $element, $attrs) {
             $timeout(function () {
-              $element[0].addEventListener('mdl-componentupgraded', function() {
-                this.MaterialProgress.setProgress($attrs.mdlProgress);
-              });
+              $element[0].MaterialProgress.setProgress($attrs.mdlProgress);
             }, 0);
           }
         };

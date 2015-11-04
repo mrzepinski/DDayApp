@@ -65,11 +65,15 @@ main {
 }
 
 .dday-project-desc {
-  height: 150px;
+  height: 170px;
 
   .text {
     padding-right: 17px;
   }
+}
+
+.dday-project.mdl-textfield {
+  width: 95%;
 }
 
 .dday-dashboard-stats {
@@ -84,10 +88,6 @@ main {
   &--title {
     font-size: 2em;
   }
-}
-
-.dday-dashboard-project-footer {
-  height: 46px;
 }
 
 .dday-dashboard-project-progress.mdl-progress {
@@ -127,6 +127,13 @@ main {
 
 .mdl-navigation__link--current {
   background-color: unquote("rgb(#{$color-primary-dark})");
+}
+
+.mdl-button--icon.mdl-button--mini-icon {
+  & .material-icons {
+    top: 50%;
+    left: 50%;
+  }
 }
 
 /**

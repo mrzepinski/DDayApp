@@ -13,9 +13,15 @@
     vm.inProgress = true;
 
     Project.all().$loaded(function (projects) {
+      $scope.projects = projects;
+      setUp();
+      vm.inProgress = false;
+    }, handleError);
+
+    function setUp () {
       var todos = 0;
       var people = 0;
-      _.each(projects, function (project) {
+      _.each($scope.projects, function (project) {
         todos += _.size(project.todos);
         people += _.size(project.team);
 
@@ -27,9 +33,7 @@
       });
       vm.todos = todos;
       vm.people = people;
-      $scope.projects = projects;
-      vm.inProgress = false;
-    }, handleError);
+    }
 
     function handleError (error) {
       toastr.clear();

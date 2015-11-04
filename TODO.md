@@ -9,8 +9,6 @@
 
 ### project
 
-- edit title & description
-- done / undone todos
 - upload & resize using base64 logo (use default otherwise)
 - add technologies tags
 
@@ -18,7 +16,6 @@
 
 ### voting - TODO at all
 
-- add optional person with voting rights
 - voting dashboard
 - animations of votes
 - displaying progress of all votes
@@ -27,6 +24,7 @@
 
 ### cms - TODO at all
 
+- add optional person with voting rights
 - set start / end datetime
 - timer countdown page visible for non-logged
 
