@@ -12,6 +12,7 @@
     vm.inProgress = true;
 
     vm.raw = {
+      uid: null,
       title: '',
       description: '',
       todos: [],
@@ -37,6 +38,7 @@
             email: vm.loggedIn.password.email
           });
           vm.model = angular.extend({}, vm.raw);
+          vm.model.uid = vm.loggedIn.uid;
           vm.inProgress = false;
         }
       }, handleError).finally(function () {
