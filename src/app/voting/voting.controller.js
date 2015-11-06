@@ -39,7 +39,7 @@
 
     function handleError (error) {
       toastr.clear();
-      toastr.error(error);
+      toastr.error(error.toString());
     }
 
   }

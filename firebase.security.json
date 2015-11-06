@@ -1,0 +1,17 @@
+{
+    "rules": {
+      "users": {
+        "$uid": {
+          ".read": "auth !== null && $uid === auth.uid"
+        },
+        ".write": true
+      },
+      "projects": {
+        ".read": true,
+        ".write": "auth !== null && (!data.exists() || !newData.exists())",
+        "$projectId": {
+          ".write": "newData.child('uid').val() === auth.uid"
+        }
+      }
+    }
+}
