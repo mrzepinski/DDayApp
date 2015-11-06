@@ -42,13 +42,17 @@
               <h5>Todos</h5>
 
               <p ng-repeat="todo in project.model.todos track by $index">
-                <input type="checkbox" class="mdl-checkbox" ng-change="project.toggleTodo(todo)" />
-
-                {{ todo.name }}
-                <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored"
-                        ng-click="project.removeTodo($index)" mdl-upgrade>
-                  <i class="material-icons">cancel</i>
-                </button>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="{{ $index }}" mdl-upgrade>
+                  <input type="checkbox" id="{{ $index }}" class="mdl-checkbox__input"
+                         ng-model="todo.done" ng-change="project.toggleTodo()">
+                  <span class="mdl-checkbox__label">
+                    {{ todo.name }}
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect mdl-button--colored"
+                            ng-click="project.removeTodo($index)" mdl-upgrade>
+                      <i class="material-icons">cancel</i>
+                    </button>
+                  </span>
+                </label>
               </p>
 
               <form ng-submit="project.createTodo()">
