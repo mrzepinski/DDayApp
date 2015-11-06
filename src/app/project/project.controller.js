@@ -129,6 +129,10 @@
         return;
       }
 
+      if (!vm.model.todos) {
+        vm.model.todos = [];
+      }
+
       vm.model.todos.push({
         name: name,
         done: false
@@ -156,6 +160,10 @@
       var email = vm.person.email.trim();
       if (!email) {
         return;
+      }
+
+      if (!vm.model.team) {
+        vm.model.team = [];
       }
 
       vm.model.team.push({
