@@ -2,10 +2,9 @@
 
 ### globally
 
-- Firebase - set rights per objects & collections
 - tests!
 - travis CI (after tests)
-- README on site
+- README on site - technologies, updated text etc.
 - responsive header
 
 ### project
