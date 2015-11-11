@@ -12,6 +12,14 @@
       "$projectId": {
         ".write": "newData.child('uid').val() === auth.uid"
       }
+    },
+    "votes": {
+      ".read": true,
+      ".write": "null !== auth"
+    },
+    "settings": {
+      ".read": true,
+      ".write": "null !== auth"
     }
   }
 }

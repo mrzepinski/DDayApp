@@ -7,13 +7,6 @@
 - README on site - technologies, updated text etc.
 - responsive header
 
-### project
-
-- upload & resize using base64 logo (use default otherwise)
-- add technologies tags
-
-### dashboard
-
 ### voting - TODO at all
 
 - voting dashboard

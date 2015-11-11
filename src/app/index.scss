@@ -59,16 +59,23 @@ main {
   background: #fafafa;
 }
 
+ul {
+  padding: 0;
+  list-style: none;
+}
+
 .dday-section {
   margin: 0 auto;
   max-width: 1140px;
 }
 
-.dday-project-desc {
-  height: 170px;
+.dday-project {
+  &--desc {
+    height: 170px;
 
-  .text {
-    padding-right: 17px;
+    .text {
+      padding-right: 17px;
+    }
   }
 }
 
@@ -80,7 +87,13 @@ main {
   height: 240px;
   text-align: center;
 
+  &.mdl-card__supporting-text {
+    width: 100%;
+    padding: 0;
+  }
+
   &--value {
+    margin: 0;
     font-size: 15em;
     line-height: 1em;
   }
@@ -112,6 +125,14 @@ main {
 
 .strike {
   text-decoration: line-through;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.inline {
+  display: inline;
 }
 
 .mdl-progress {

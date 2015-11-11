@@ -13,7 +13,9 @@
     vm.inProgress = true;
 
     Project.all().$loaded(function (projects) {
+      /* eslint-disable */
       $scope.projects = projects;
+      /* eslint-enable */
       setUp();
       vm.inProgress = false;
     }, handleError);

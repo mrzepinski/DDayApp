@@ -5,23 +5,10 @@
     <div class="mdl-layout-spacer"></div>
 
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href=""
-         ui-sref-active="mdl-navigation__link--current" ui-sref="dashboard">Dashboard</a>
-
-      <a class="mdl-navigation__link" href="" ng-if="navbar.isAuthenticated"
-         ui-sref-active="mdl-navigation__link--current" ui-sref="project">Project</a>
-
-      <a class="mdl-navigation__link" href="" ng-if="navbar.isAuthenticated"
-         ui-sref-active="mdl-navigation__link--current" ui-sref="voting">Voting</a>
-
-      <a class="mdl-navigation__link" href="" ng-if="navbar.isAuthenticated"
-         ui-sref-active="mdl-navigation__link--current" ui-sref="account">Account</a>
-
-      <a class="mdl-navigation__link" href="" ng-if="navbar.isAuthenticated"
-         ui-sref-active="mdl-navigation__link--current" ng-click="navbar.logout()">Logout</a>
-
-      <a class="mdl-navigation__link" href="" ng-if="!navbar.isAuthenticated"
-         ui-sref-active="mdl-navigation__link--current" ui-sref="auth">Login</a>
+      <a class="mdl-navigation__link" href="" ng-repeat="item in navbar.links track by item.route"
+         ui-sref-active="mdl-navigation__link--current" ng-if="::item.route" ui-sref="{{ ::item.route }}">{{ ::item.label }}</a>
+      <a class="mdl-navigation__link" href="" ng-repeat="item in navbar.links track by item.route"
+         ng-if="::item.onClick" ng-click="::item.onClick()">{{ ::item.label }}</a>
     </nav>
   </div>
 

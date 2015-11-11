@@ -57,6 +57,7 @@
 
     vm.createTodo = createTodo;
     vm.removeTodo = removeTodo;
+    vm.editTodo = editTodo;
     vm.toggleTodo = toggleTodo;
 
     vm.person = {
@@ -148,6 +149,11 @@
       if (angular.isFunction(vm.model.$save)) {
         vm.model.$save().then(null, handleError);
       }
+    }
+
+    function editTodo ($index) {
+      vm.todo.name = vm.model.todos[$index].name;
+      removeTodo($index);
     }
 
     function toggleTodo () {

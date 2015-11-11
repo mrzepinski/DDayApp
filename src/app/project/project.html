@@ -27,7 +27,7 @@
                   <small>(you can use <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">markdown syntax</a>)</small>
                 </div>
                 <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
-                  <div class="dday-project-desc">
+                  <div class="dday-project--desc">
                     <scrollable always-visible="true">
                       <div class="text" btf-markdown="project.model.description"></div>
                     </scrollable>
@@ -36,6 +36,7 @@
               </div>
             </div>
           </div>
+
           <div ng-if="!project.addOrUpdateMode">
             <h3>{{ project.model.title }}</h3>
 
@@ -44,53 +45,57 @@
 
           <h5>Todos</h5>
 
-          <div ng-repeat="todo in project.model.todos track by $index">
-            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="{{ $index }}" mdl-upgrade>
-              <input type="checkbox" id="{{ $index }}" class="mdl-checkbox__input"
-                     ng-model="todo.done" ng-change="project.toggleTodo()">
-                <span class="mdl-checkbox__label">
-                  <span ng-class="{ 'strike': todo.done }">{{ todo.name }}</span>
-                  <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect mdl-button--colored"
-                          ng-click="project.removeTodo($index)" mdl-upgrade>
-                    <i class="material-icons">cancel</i>
-                  </button>
-                </span>
-            </label>
-          </div>
+          <ul>
+            <li ng-repeat="todo in project.model.todos track by $index">
+              <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect inline" for="{{ $index }}" mdl-upgrade>
+                <input type="checkbox" id="{{ $index }}" class="mdl-checkbox__input"
+                       ng-model="todo.done" ng-change="project.toggleTodo()" />
+              </label>
+
+              <span class="pointer" ng-class="{ 'strike': todo.done }" ng-click="project.editTodo($index)">{{ todo.name }}</span>
+
+              <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect mdl-button--colored"
+                      ng-click="project.removeTodo($index)" mdl-upgrade>
+                <i class="material-icons">cancel</i>
+              </button>
+            </li>
+          </ul>
 
           <form ng-submit="project.createTodo()">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
-              <input id="name" class="mdl-textfield__input" type="text" ng-model="project.todo.name" />
-              <label for="name" class="mdl-textfield__label">thing to do</label>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{ 'is-dirty': project.todo.name.length }" mdl-upgrade>
+              <input id="todoName" class="mdl-textfield__input" type="text" ng-model="project.todo.name" />
+              <label for="todoName" class="mdl-textfield__label">thing to do</label>
             </div>
 
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect"
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect"
                     type="submit" mdl-upgrade>
-              <i class="material-icons">add</i>
+              <i class="material-icons">save</i>
             </button>
           </form>
 
           <h5>Team</h5>
 
-          <div ng-repeat="person in project.model.team track by $index">
-            <img src="" gravatar-src="person.email" gravatar-size="34" alt="gravatar" />
-            {{ person.email }}
-            <small ng-if="$first">(leader)</small>
-            <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored"
-                    ng-if="!$first" ng-click="project.removePerson($index)" mdl-upgrade>
-              <i class="material-icons">cancel</i>
-            </button>
-          </div>
+          <ul>
+            <li ng-repeat="person in project.model.team track by $index">
+              <img src="" gravatar-src="person.email" gravatar-size="34" alt="gravatar" />
+              {{ person.email }}
+              <small ng-if="$first">(leader)</small>
+              <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored"
+                      ng-if="!$first" ng-click="project.removePerson($index)" mdl-upgrade>
+                <i class="material-icons">cancel</i>
+              </button>
+            </li>
+          </ul>
 
           <form ng-submit="project.createPerson()">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
-              <input id="email" class="mdl-textfield__input" type="email" ng-model="project.person.email" />
-              <label for="email" class="mdl-textfield__label">e-mail address</label>
+              <input id="personEmail" class="mdl-textfield__input" type="email" ng-model="project.person.email" />
+              <label for="personEmail" class="mdl-textfield__label">e-mail address</label>
             </div>
 
-            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect"
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect"
                     type="submit" mdl-upgrade>
-              <i class="material-icons">add</i>
+              <i class="material-icons">save</i>
             </button>
           </form>
 

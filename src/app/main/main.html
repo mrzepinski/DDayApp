@@ -7,21 +7,21 @@
   <main class="mdl-layout__content">
     <div class="dday-section mdl-grid" ng-if="!main.inProgress">
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--4-col-desktop">
-        <div class="mdl-card__supporting-text dday-dashboard-stats">
+        <div class="dday-dashboard-stats mdl-card__supporting-text">
           <p class="dday-dashboard-stats--value mdl-color-text--primary">{{ projects.length }}</p>
           <p class="dday-dashboard-stats--title">project(s)</p>
         </div>
       </div>
 
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--4-col-desktop">
-        <div class="mdl-card__supporting-text dday-dashboard-stats">
+        <div class="dday-dashboard-stats mdl-card__supporting-text">
           <p class="dday-dashboard-stats--value mdl-color-text--primary">{{ main.people }}</p>
           <p class="dday-dashboard-stats--title">member(s)</p>
         </div>
       </div>
 
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--4-col-desktop">
-        <div class="mdl-card__supporting-text dday-dashboard-stats">
+        <div class="dday-dashboard-stats mdl-card__supporting-text">
           <p class="dday-dashboard-stats--value mdl-color-text--primary">{{ main.todos }}</p>
           <p class="dday-dashboard-stats--title">todo(s)</p>
         </div>
@@ -37,7 +37,7 @@
           <div class="mdl-card__title-text">{{ ::project.title }}</div>
         </div>
 
-        <div class="dday-project-desc mdl-card__supporting-text">
+        <div class="dday-project--desc mdl-card__supporting-text">
           <scrollable always-visible="true">
             <div class="text" btf-markdown="project.description"></div>
           </scrollable>
