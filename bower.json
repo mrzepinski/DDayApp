@@ -21,7 +21,8 @@
     "angular-gravatar": "0.4.1",
     "angular-markdown-directive": "0.3.1",
     "angular-nanoscroller": "0.2.1",
-    "angular-chart.js": "0.8.5"
+    "angular-chart.js": "0.8.5",
+    "angular-drag-and-drop-lists": "1.3.0"
   },
   "devDependencies": {
     "angular-mocks": "1.4.7",

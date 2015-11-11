@@ -77,6 +77,26 @@ ul {
       padding-right: 17px;
     }
   }
+
+  &--todos-list {
+    li {
+      line-height: 2.5em;
+
+      label.mdl-checkbox {
+        width: auto;
+      }
+
+      &.dndPlaceholder {
+        border: 1px dashed #ccc;
+      }
+    }
+  }
+
+  &--team-list {
+    li {
+      line-height: 2.5em;
+    }
+  }
 }
 
 .dday-project.mdl-textfield {
@@ -129,10 +149,6 @@ ul {
 
 .pointer {
   cursor: pointer;
-}
-
-.inline {
-  display: inline;
 }
 
 .mdl-progress {

@@ -14,7 +14,8 @@
       'firebase',
       'ui.gravatar',
       'btford.markdown',
-      'sun.scrollable'
+      'sun.scrollable',
+      'dndLists'
     ]);
 
 })();

@@ -59,6 +59,7 @@
     vm.removeTodo = removeTodo;
     vm.editTodo = editTodo;
     vm.toggleTodo = toggleTodo;
+    vm.reorderTodos = reorderTodos;
 
     vm.person = {
       email: ''
@@ -160,6 +161,10 @@
       if (angular.isFunction(vm.model.$save)) {
         vm.model.$save().then(null, handleError);
       }
+    }
+
+    function reorderTodos ($index) {
+      removeTodo($index);
     }
 
     function createPerson () {
