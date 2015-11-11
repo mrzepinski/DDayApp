@@ -57,7 +57,10 @@
 
     vm.createTodo = createTodo;
     vm.removeTodo = removeTodo;
-    vm.editTodo = editTodo;
+    vm.editTodoStart = editTodoStart;
+    vm.editTodoStop = editTodoStop;
+    vm.editTodoDone = editTodoDone;
+    vm.editTodoCheckIfStop = editTodoCheckIfStop;
     vm.toggleTodo = toggleTodo;
     vm.reorderTodos = reorderTodos;
 
@@ -152,9 +155,29 @@
       }
     }
 
-    function editTodo ($index) {
-      vm.todo.name = vm.model.todos[$index].name;
-      removeTodo($index);
+    function editTodoStart (todo) {
+      todo.editMode = true;
+    }
+
+    function editTodoStop (todo) {
+      todo.editMode = false;
+    }
+
+    function editTodoDone ($index, todo) {
+      if (!todo.name.trim()) {
+        removeTodo($index);
+      } else {
+        delete todo.editMode;
+        if (angular.isFunction(vm.model.$save)) {
+          vm.model.$save().then(null, handleError);
+        }
+      }
+    }
+
+    function editTodoCheckIfStop ($event, todo) {
+      if (27 === $event.keyCode) {
+        editTodoStop(todo);
+      }
     }
 
     function toggleTodo () {

@@ -48,24 +48,50 @@
           <ul class="dday-project--todos-list" dnd-list="project.model.todos">
             <li ng-repeat="todo in project.model.todos"
                 dnd-draggable="todo" dnd-moved="project.reorderTodos($index)">
-              <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="{{ $index }}" mdl-upgrade>
-                <input type="checkbox" id="{{ $index }}" class="mdl-checkbox__input"
-                       ng-model="todo.done" ng-change="project.toggleTodo()" />
-              </label>
+              <span ng-hide="todo.editMode">
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="{{ $index }}" mdl-upgrade>
+                  <input type="checkbox" id="{{ $index }}" class="mdl-checkbox__input"
+                         ng-model="todo.done" ng-change="project.toggleTodo()" />
+                </label>
 
-              <span class="pointer" ng-class="{ 'strike': todo.done }" ng-click="project.editTodo($index)">{{ todo.name }}</span>
+                <span class="pointer" ng-class="{ 'strike': todo.done }"
+                      ng-click="project.editTodoStart(todo)">
+                  {{ todo.name }}
+                </span>
 
-              <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect mdl-button--colored"
-                      ng-click="project.removeTodo($index)" mdl-upgrade>
-                <i class="material-icons">cancel</i>
-              </button>
+                <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect mdl-button--colored"
+                        ng-click="project.removeTodo($index)" mdl-upgrade>
+                  <i class="material-icons">clear</i>
+                </button>
+              </span>
+
+              <span ng-if="todo.editMode">
+                <form ng-submit="project.editTodoDone($index, todo)">
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+                    <input id="edit.todoName" class="mdl-textfield__input" type="text"
+                           ng-model="todo.name" ng-model-options="{ debounce: 500 }"
+                           ng-keyup="project.editTodoCheckIfStop($event, todo)" input-focus />
+                    <label for="edit.todoName" class="mdl-textfield__label"></label>
+                  </div>
+
+                  <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect"
+                          mdl-upgrade>
+                    <i class="material-icons">save</i>
+                  </button>
+
+                  <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect"
+                          type="submit" ng-click="project.editTodoStop(todo)" mdl-upgrade>
+                    <i class="material-icons">cancel</i>
+                  </button>
+                </form>
+              </span>
             </li>
 
             <li class="dndPlaceholder">&nbsp;</li>
           </ul>
 
           <form ng-submit="project.createTodo()">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" ng-class="{ 'is-dirty': project.todo.name.length }" mdl-upgrade>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
               <input id="todoName" class="mdl-textfield__input" type="text" ng-model="project.todo.name" />
               <label for="todoName" class="mdl-textfield__label">thing to do</label>
             </div>
@@ -85,7 +111,7 @@
               <small ng-if="$first">(leader)</small>
               <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect mdl-button--colored"
                       ng-if="!$first" ng-click="project.removePerson($index)" mdl-upgrade>
-                <i class="material-icons">cancel</i>
+                <i class="material-icons">clear</i>
               </button>
             </li>
           </ul>
@@ -114,7 +140,7 @@
               </button>
               <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"
                       type="button" ng-if="!project.addOrUpdateMode" ng-click="project.removeProject()" mdl-upgrade>
-                <i class="material-icons">cancel</i>
+                <i class="material-icons">clear</i>
               </button>
             </div>
           </div>

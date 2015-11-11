@@ -1,0 +1,35 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" mdl-upgrade>
+
+  <navbar>
+    <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="settings.inProgress" mdl-upgrade></div>
+  </navbar>
+
+  <main class="mdl-layout__content">
+    <div class="dday-section mdl-grid" ng-if="!settings.inProgress">
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+        <div class="mdl-card__supporting-text">
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="timerStarted" mdl-upgrade>
+            <input type="checkbox" id="timerStarted" class="mdl-checkbox__input"
+                   ng-model="settings.data.timerStarted" ng-change="settings.save()">
+              <span class="mdl-checkbox__label">
+                timer started?
+              </span>
+          </label>
+
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="votingStarted" mdl-upgrade>
+            <input type="checkbox" id="votingStarted" class="mdl-checkbox__input"
+                   ng-model="settings.data.votingStarted" ng-change="settings.save()">
+              <span class="mdl-checkbox__label">
+                voting started?
+              </span>
+          </label>
+        </div>
+
+        <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="settings.saving" mdl-upgrade></div>
+      </div>
+    </div>
+  </main>
+
+  <footer></footer>
+
+</div>

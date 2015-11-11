@@ -72,6 +72,13 @@
         controller: 'VotingController',
         controllerAs: 'voting',
         authenticate: true
+      })
+      .state('settings', {
+        url: '/settings',
+        templateUrl: 'app/settings/settings.html',
+        controller: 'SettingsController',
+        controllerAs: 'settings',
+        authenticate: true
       });
   }
 

@@ -70,6 +70,10 @@ ul {
 }
 
 .dday-project {
+  &.mdl-textfield {
+    width: 95%;
+  }
+
   &--desc {
     height: 170px;
 
@@ -99,36 +103,48 @@ ul {
   }
 }
 
-.dday-project.mdl-textfield {
-  width: 95%;
-}
+.dday-dashboard {
+  &--stats {
+    height: 240px;
+    text-align: center;
 
-.dday-dashboard-stats {
-  height: 240px;
-  text-align: center;
+    &.mdl-card__supporting-text {
+      width: 100%;
+      padding: 0;
+    }
 
-  &.mdl-card__supporting-text {
-    width: 100%;
-    padding: 0;
+    &--value {
+      margin: 0;
+      font-size: 15em;
+      line-height: 1em;
+    }
+
+    &--title {
+      font-size: 2em;
+    }
   }
 
-  &--value {
-    margin: 0;
-    font-size: 15em;
-    line-height: 1em;
+  &--project {
+    position: relative;
+    padding-bottom: 48px;
+
+    &--desc {
+      height: 170px;
+    }
+
+    &--footer {
+      position: absolute;
+      bottom: 0;
+
+      &--progress.mdl-progress {
+        height: 30px;
+      }
+
+      &--team {
+        text-align: right;
+      }
+    }
   }
-
-  &--title {
-    font-size: 2em;
-  }
-}
-
-.dday-dashboard-project-progress.mdl-progress {
-  height: 30px;
-}
-
-.dday-dashboard-project-team {
-  text-align: right;
 }
 
 .pull-left {

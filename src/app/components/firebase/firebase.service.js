@@ -10,6 +10,7 @@
     var main = new $window.Firebase(FIREBASE_URL);
     var projects = new $window.Firebase([FIREBASE_URL, 'projects'].join('/'));
     var votes = new $window.Firebase([FIREBASE_URL, 'votes'].join('/'));
+    var settings = new $window.Firebase([FIREBASE_URL, 'settings'].join('/'));
 
     return {
       main: main,
@@ -17,7 +18,8 @@
       projects: projects,
       projectById: projectById,
       votes: votes,
-      voteById: voteById
+      voteById: voteById,
+      settings: settings
     };
 
     function userById (id) {

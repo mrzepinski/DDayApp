@@ -7,23 +7,23 @@
   <main class="mdl-layout__content">
     <div class="dday-section mdl-grid" ng-if="!main.inProgress">
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--4-col-desktop">
-        <div class="dday-dashboard-stats mdl-card__supporting-text">
-          <p class="dday-dashboard-stats--value mdl-color-text--primary">{{ projects.length }}</p>
-          <p class="dday-dashboard-stats--title">project(s)</p>
+        <div class="dday-dashboard--stats mdl-card__supporting-text">
+          <p class="dday-dashboard--stats--value mdl-color-text--primary">{{ projects.length }}</p>
+          <p class="dday-dashboard--stats--title">project(s)</p>
         </div>
       </div>
 
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--4-col-desktop">
-        <div class="dday-dashboard-stats mdl-card__supporting-text">
-          <p class="dday-dashboard-stats--value mdl-color-text--primary">{{ main.people }}</p>
-          <p class="dday-dashboard-stats--title">member(s)</p>
+        <div class="dday-dashboard--stats mdl-card__supporting-text">
+          <p class="dday-dashboard--stats--value mdl-color-text--primary">{{ main.people }}</p>
+          <p class="dday-dashboard--stats--title">member(s)</p>
         </div>
       </div>
 
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--4-col-desktop">
-        <div class="dday-dashboard-stats mdl-card__supporting-text">
-          <p class="dday-dashboard-stats--value mdl-color-text--primary">{{ main.todos }}</p>
-          <p class="dday-dashboard-stats--title">todo(s)</p>
+        <div class="dday-dashboard--stats mdl-card__supporting-text">
+          <p class="dday-dashboard--stats--value mdl-color-text--primary">{{ main.todos }}</p>
+          <p class="dday-dashboard--stats--title">todo(s)</p>
         </div>
       </div>
 
@@ -31,25 +31,25 @@
         <hr />
       </div>
 
-      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop"
+      <div class="dday-dashboard--project mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop"
            ng-repeat="project in projects track by $index" ng-if="projects.length">
         <div class="mdl-card__title mdl-color--primary mdl-color-text--primary-contrast">
           <div class="mdl-card__title-text">{{ ::project.title }}</div>
         </div>
 
-        <div class="dday-project--desc mdl-card__supporting-text">
+        <div class="dday-dashboard--project--desc mdl-card__supporting-text">
           <scrollable always-visible="true">
             <div class="text" btf-markdown="project.description"></div>
           </scrollable>
         </div>
 
-        <div class="mdl-card__actions mdl-card--border">
+        <div class="dday-dashboard--project--footer mdl-card__actions mdl-card--border">
           <div class="mdl-grid mdl-grid--no-spacing">
             <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
-              <div class="dday-dashboard-project-progress mdl-progress mdl-js-progress" mdl-upgrade mdl-progress="{{ project.progress }}"></div>
+              <div class="dday-dashboard--project--footer--progress mdl-progress mdl-js-progress" mdl-upgrade mdl-progress="{{ project.progress }}"></div>
             </div>
             <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
-              <div class="dday-dashboard-project-team">
+              <div class="dday-dashboard--project--footer--team">
                 <img src="" gravatar-src="person.email" gravatar-size="30" alt="gravatar"
                      ng-repeat="person in project.team track by $index" />
               </div>
