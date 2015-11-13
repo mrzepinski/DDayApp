@@ -6,11 +6,13 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController ($scope, Project, toastr) {
+  function MainController ($scope, Project, Settings, toastr) {
 
     var vm = this;
 
     vm.inProgress = true;
+
+    vm.settings = Settings.all();
 
     Project.all().$loaded(function (projects) {
       /* eslint-disable */

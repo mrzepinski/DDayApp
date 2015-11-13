@@ -6,27 +6,56 @@
 
   <main class="mdl-layout__content">
     <div class="dday-section mdl-grid" ng-if="!settings.inProgress">
-      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
-        <div class="mdl-card__supporting-text">
-          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="timerStarted" mdl-upgrade>
-            <input type="checkbox" id="timerStarted" class="mdl-checkbox__input"
-                   ng-model="settings.data.timerStarted" ng-change="settings.save()">
-              <span class="mdl-checkbox__label">
-                timer started?
-              </span>
-          </label>
 
-          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="votingStarted" mdl-upgrade>
-            <input type="checkbox" id="votingStarted" class="mdl-checkbox__input"
-                   ng-model="settings.data.votingStarted" ng-change="settings.save()">
+      <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="settings.saving" mdl-upgrade></div>
+
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+        <div class="mdl-card__title">
+          <div class="mdl-card__title-text">Timer</div>
+        </div>
+
+        <div class="mdl-card__supporting-text">
+          <p>{{ settings.data.dateTimeCountdown | date:'dd-MM-yyyy mm:HH' }}</p>
+
+          <p>
+            <label for="formDate"></label>
+            <input type="date" id="formDate" ng-model="settings.form.dateTime.date" />
+
+            <label for="formTime"></label>
+            <input type="time" id="formTime" ng-model="settings.form.dateTime.time" />
+
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect"
+                    ng-click="settings.setDateTime()" mdl-upgrade>
+              <i class="material-icons">save</i>
+            </button>
+          </p>
+
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="formTimerEnabled" mdl-upgrade>
+            <input type="checkbox" id="formTimerEnabled" class="mdl-checkbox__input"
+                   ng-model="settings.data.timerEnabled" ng-change="settings.save()">
               <span class="mdl-checkbox__label">
-                voting started?
+                timer enabled?
               </span>
           </label>
         </div>
-
-        <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="settings.saving" mdl-upgrade></div>
       </div>
+
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+        <div class="mdl-card__title">
+          <div class="mdl-card__title-text">Voting</div>
+        </div>
+
+        <div class="mdl-card__supporting-text">
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="formVotingEnabled" mdl-upgrade>
+            <input type="checkbox" id="formVotingEnabled" class="mdl-checkbox__input"
+                   ng-model="settings.data.votingEnabled" ng-change="settings.save()">
+              <span class="mdl-checkbox__label">
+                voting enabled?
+              </span>
+          </label>
+        </div>
+      </div>
+
     </div>
   </main>
 

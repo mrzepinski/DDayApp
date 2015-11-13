@@ -42,13 +42,13 @@
               return isAuthenticated;
             }
           },
-          {
-            route: 'settings',
-            label: 'Settings',
-            shouldShow: function () {
-              return isAuthenticated;
-            }
-          },
+          //{
+          //  route: 'settings',
+          //  label: 'Settings',
+          //  shouldShow: function () {
+          //    return isAuthenticated;
+          //  }
+          //},
           {
             route: 'auth',
             label: 'Login',

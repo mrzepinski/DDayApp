@@ -8,12 +8,14 @@
   /** @ngInject */
   function Settings (FirebaseRef, $firebaseObject) {
 
+    var settingsObject = $firebaseObject(FirebaseRef.settings);
+
     return {
       all: all
     };
 
     function all () {
-      return $firebaseObject(FirebaseRef.settings);
+      return settingsObject;
     }
 
   }

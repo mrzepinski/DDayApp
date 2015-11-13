@@ -15,7 +15,8 @@
       'ui.gravatar',
       'btford.markdown',
       'sun.scrollable',
-      'dndLists'
+      'dndLists',
+      'timer'
     ]);
 
 })();

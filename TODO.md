@@ -18,8 +18,6 @@
 ### cms - TODO at all
 
 - add optional person with voting rights
-- set start / end datetime
-- timer countdown page visible for non-logged
 
 ### communication
  

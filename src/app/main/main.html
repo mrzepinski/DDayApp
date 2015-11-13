@@ -6,6 +6,29 @@
 
   <main class="mdl-layout__content">
     <div class="dday-section mdl-grid" ng-if="!main.inProgress">
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--hide-phone mdl-cell--hide-tablet" ng-if="main.settings.timerEnabled">
+        <div class="dday-dashboard--timer mdl-card__supporting-text">
+          <timer end-time="main.settings.dateTimeCountdown">
+            <div class="mdl-grid">
+              <span class="mdl-cell mdl-cell--3-col dday-dashboard--timer--value mdl-color-text--primary">{{ days }}</span>
+              <span class="mdl-cell mdl-cell--3-col dday-dashboard--timer--value mdl-color-text--primary">{{ hours }}</span>
+              <span class="mdl-cell mdl-cell--3-col dday-dashboard--timer--value mdl-color-text--primary">{{ minutes }}'</span>
+              <span class="mdl-cell mdl-cell--3-col dday-dashboard--timer--value mdl-color-text--primary">{{ seconds }}''</span>
+            </div>
+            <div class="mdl-grid">
+              <span class="mdl-cell mdl-cell--3-col dday-dashboard--timer--title">day{{ daysS }}</span>
+              <span class="mdl-cell mdl-cell--3-col dday-dashboard--timer--title">hour{{ hoursS }}</span>
+              <span class="mdl-cell mdl-cell--3-col dday-dashboard--timer--title">minute{{ minutesS }}</span>
+              <span class="mdl-cell mdl-cell--3-col dday-dashboard--timer--title">second{{ secondsS }}</span>
+            </div>
+          </timer>
+        </div>
+      </div>
+
+      <div class="mdl-cell mdl-cell--12-col mdl-cell--hide-phone mdl-cell--hide-tablet" ng-if="main.settings.timerEnabled">
+        <hr />
+      </div>
+
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--4-col-desktop">
         <div class="dday-dashboard--stats mdl-card__supporting-text">
           <p class="dday-dashboard--stats--value mdl-color-text--primary">{{ projects.length }}</p>
