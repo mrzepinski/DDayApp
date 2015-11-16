@@ -6,7 +6,7 @@
     .controller('VotingController', VotingController);
 
   /** @ngInject */
-  function VotingController (Auth, FirebaseRef, $firebaseObject, Voting, Project, Settings, toastr) {
+  function VotingController (Auth, Voting, Project, Settings, toastr) {
     var vm = this;
 
     vm.inProgress = true;
@@ -23,7 +23,7 @@
 
     Auth.getLoggedIn().then(function (loggedIn) {
       vm.loggedIn = loggedIn;
-      $firebaseObject(FirebaseRef.userById(vm.loggedIn.uid)).$loaded(function (user) {
+      Auth.getLoggedInProfile(vm.loggedIn.uid).then(function (user) {
         vm.user = user;
       }, handleError);
     });

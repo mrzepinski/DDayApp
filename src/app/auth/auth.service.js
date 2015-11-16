@@ -6,12 +6,14 @@
     .factory('Auth', Auth);
 
   /** @ngInject */
-  function Auth ($firebaseAuth, FirebaseRef, $q, $timeout, $state) {
-    var FirebaseAuth = $firebaseAuth(FirebaseRef.main);
+  function Auth ($firebaseAuth, $firebaseObject, FirebaseRef, $q, $timeout, $state) {
+    var FirebaseAuth = $firebaseAuth(FirebaseRef.main),
+      profile = null;
 
     return {
       isAuthenticated: isAuthenticated,
       getLoggedIn: getLoggedIn,
+      getLoggedInProfile: getLoggedInProfile,
       login: login,
       logout: logout,
       createAccount: createAccount,
@@ -25,6 +27,15 @@
 
     function getLoggedIn () {
       return FirebaseAuth.$requireAuth();
+    }
+
+    function getLoggedInProfile (uid) {
+      if (!profile) {
+        profile = $q(function (resolve, reject) {
+          $firebaseObject(FirebaseRef.userById(uid)).$loaded(resolve, reject);
+        });
+      }
+      return profile;
     }
 
     function login (email, pass, rememberMe) {

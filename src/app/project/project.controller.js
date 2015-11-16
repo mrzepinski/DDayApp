@@ -6,7 +6,7 @@
     .controller('ProjectController', ProjectController);
 
   /** @ngInject */
-  function ProjectController (Auth, FirebaseRef, $firebaseObject, Project, toastr) {
+  function ProjectController (Auth, Project, toastr) {
     var vm = this;
 
     vm.inProgress = true;
@@ -24,7 +24,7 @@
 
     Auth.getLoggedIn().then(function (loggedIn) {
       vm.loggedIn = loggedIn;
-      $firebaseObject(FirebaseRef.userById(vm.loggedIn.uid)).$loaded(function (user) {
+      Auth.getLoggedInProfile(vm.loggedIn.uid).then(function (user) {
         vm.user = user;
         vm.raw.team.push({
           email: vm.loggedIn.password.email

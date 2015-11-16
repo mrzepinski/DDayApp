@@ -15,11 +15,11 @@
     },
     "votes": {
       ".read": true,
-      ".write": "null !== auth"
+      ".write": "null !== auth && (root.child('users/' + auth.uid).child('projectId').exists() || root.child('users/' + auth.uid).child('vip').exists())"
     },
     "settings": {
       ".read": true,
-      ".write": "null !== auth"
+      ".write": "null !== auth && root.child('users/' + auth.uid).child('role').val() === 'ADMIN'"
     }
   }
 }

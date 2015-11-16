@@ -20,6 +20,7 @@
     function NavbarController (Auth) {
       var vm = this,
         isAuthenticated = Auth.isAuthenticated(),
+        userProfile = null,
         links = [
           {
             route: 'project',
@@ -32,7 +33,7 @@
             route: 'voting',
             label: 'Voting',
             shouldShow: function () {
-              return isAuthenticated;
+              return isAuthenticated && userProfile && userProfile.projectId;
             }
           },
           {
@@ -42,13 +43,13 @@
               return isAuthenticated;
             }
           },
-          //{
-          //  route: 'settings',
-          //  label: 'Settings',
-          //  shouldShow: function () {
-          //    return isAuthenticated;
-          //  }
-          //},
+          {
+            route: 'settings',
+            label: 'Settings',
+            shouldShow: function () {
+              return isAuthenticated && userProfile && userProfile.role && ('ADMIN' === userProfile.role);
+            }
+          },
           {
             route: 'auth',
             label: 'Login',
@@ -64,14 +65,14 @@
             },
             onClick: Auth.logout
           }
-        ],
-        filterLinks = function () {
-          _.each(links, function (link) {
-            if (link.shouldShow()) {
-              vm.links.push(link);
-            }
-          });
-        };
+        ];
+
+      Auth.getLoggedIn().then(function (loggedIn) {
+        Auth.getLoggedInProfile(loggedIn.uid).then(function (user) {
+          userProfile = user;
+          filterLinks();
+        }, handleError);
+      });
 
       vm.links = [
         {
@@ -79,7 +80,19 @@
           label: 'Dashboard'
         }
       ];
-      filterLinks();
+
+      function filterLinks () {
+        _.each(links, function (link) {
+          if (link.shouldShow()) {
+            vm.links.push(link);
+          }
+        });
+      }
+
+      function handleError (error) {
+        toastr.clear();
+        toastr.error(error.toString());
+      }
     }
   }
 
