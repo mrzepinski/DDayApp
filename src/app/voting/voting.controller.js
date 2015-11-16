@@ -6,12 +6,15 @@
     .controller('VotingController', VotingController);
 
   /** @ngInject */
-  function VotingController (Auth, FirebaseRef, $firebaseObject, Vote, Project, toastr) {
+  function VotingController (Auth, FirebaseRef, $firebaseObject, Voting, Project, Settings, toastr) {
     var vm = this;
 
     vm.inProgress = true;
     vm.loaded = false;
     vm.model = null;
+
+    vm.settings = Settings.all();
+    vm.votes = Voting.all();
 
     Project.all().$loaded(function (projects) {
       vm.projects = projects;
@@ -28,13 +31,18 @@
     vm.votingInProgress = false;
     vm.vote = vote;
 
-    function vote () {
-      Vote.add(vm.model).then(function (id) {
-        vm.user.voteId = id;
-        vm.user.$save();
-        vm.votingInProgress = false;
+    function vote (projectId) {
+      vm.votingInProgress = true;
+      vm.user.voteForProjectId = projectId;
+      vm.user.$save().then(null, handleError);
+      var vote = {};
+      vote[vm.loggedIn.uid] = projectId;
+      angular.extend(vm.votes, vote);
+      vm.votes.$save().then(function () {
         toastr.success('We got your vote!');
-      }, handleError);
+      }, handleError).finally(function () {
+        vm.votingInProgress = false;
+      });
     }
 
     function handleError (error) {

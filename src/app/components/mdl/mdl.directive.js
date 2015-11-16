@@ -16,7 +16,7 @@
           post: function postLink ($scope, $element) {
             $timeout(function () {
               $window.componentHandler.upgradeElements($element[0]);
-            }, 0);
+            });
           }
         };
       }
@@ -28,12 +28,24 @@
     return {
       restrict: 'A',
       priority: 500,
+      scope: {
+        mdlProgress: '=mdlProgress'
+      },
       compile: function compileFn () {
         return {
-          post: function postLink ($scope, $element, $attrs) {
-            $timeout(function () {
-              $element[0].MaterialProgress.setProgress($attrs.mdlProgress);
-            }, 0);
+          post: function postLink ($scope, $element) {
+            var setProgress = function () {
+                $timeout(function () {
+                  $element[0].MaterialProgress.setProgress($scope.mdlProgress);
+                });
+              },
+              unwatch;
+
+            unwatch = $scope.$watch('mdlProgress', setProgress);
+
+            $scope.$on('$destroy', function () {
+              unwatch();
+            });
           }
         };
       }

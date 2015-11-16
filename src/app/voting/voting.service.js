@@ -3,33 +3,19 @@
 
   angular
     .module('ddayApp')
-    .factory('Vote', Vote);
+    .factory('Voting', Voting);
 
   /** @ngInject */
-  function Vote (FirebaseRef, $firebaseUtils, $firebaseArray, $firebaseObject, $q) {
+  function Voting (FirebaseRef, $firebaseObject) {
 
-    var votes = $firebaseArray(FirebaseRef.votes);
+    var votes = $firebaseObject(FirebaseRef.votes);
 
     return {
-      add: add,
-      all: all,
-      findById: findById
+      all: all
     };
-
-    function add (data) {
-      return $q(function (resolve, reject) {
-        all().$add(data).then(function (ref) {
-          resolve($firebaseUtils.getKey(ref));
-        }, reject);
-      });
-    }
 
     function all () {
       return votes;
-    }
-
-    function findById (id) {
-      return $firebaseObject(FirebaseRef.voteById(id));
     }
 
   }

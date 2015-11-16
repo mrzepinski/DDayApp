@@ -6,15 +6,17 @@
 
   <main class="mdl-layout__content">
     <div class="dday-section mdl-grid" ng-if="!voting.inProgress">
-      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col" ng-if="!voting.started">
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col" ng-if="!voting.settings.votingEnabled">
         <div class="mdl-card__title mdl-color--orange mdl-color-text--white">
-          <div class="mdl-card__title-text">Voting not started yet.</div>
+          <div class="mdl-card__title-text">Voting is disabled.</div>
         </div>
       </div>
 
-      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col"
-           ng-repeat="project in voting.projects track by $index" ng-if="voting.projects.length && voting.started">
-        <div class="mdl-card__title" ng-class="{ 'mdl-color--teal mdl-color-text--white': false }">
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col pointer"
+           ng-repeat="project in voting.projects track by $index"
+           ng-click="voting.vote(project.$id)"
+           ng-if="voting.projects.length && voting.settings.votingEnabled">
+        <div class="mdl-card__title" ng-class="{ 'mdl-color--teal mdl-color-text--white': (voting.user.voteForProjectId && voting.user.voteForProjectId === project.$id) }">
           <div class="mdl-card__title-text">{{ ::project.title }}</div>
         </div>
       </div>
