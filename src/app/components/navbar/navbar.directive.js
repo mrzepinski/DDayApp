@@ -67,19 +67,23 @@
           }
         ];
 
-      Auth.getLoggedIn().then(function (loggedIn) {
-        Auth.getLoggedInProfile(loggedIn.uid).then(function (user) {
-          userProfile = user;
-          filterLinks();
-        }, handleError);
-      });
-
       vm.links = [
         {
           route: 'dashboard',
           label: 'Dashboard'
         }
       ];
+
+      if (isAuthenticated) {
+        Auth.getLoggedIn().then(function (loggedIn) {
+          Auth.getLoggedInProfile(loggedIn.uid).then(function (user) {
+            userProfile = user;
+            filterLinks();
+          }, handleError);
+        });
+      } else {
+        filterLinks();
+      }
 
       function filterLinks () {
         _.each(links, function (link) {
