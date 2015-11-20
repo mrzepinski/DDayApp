@@ -60,15 +60,17 @@
           members += _.size(project.team);
           todos += _.size(project.todos);
 
+          project.progress = 0;
           if (_.size(project.todos) > 0) {
             project.progress = Math.round(_.size(_.filter(project.todos, { done: true })) / _.size(project.todos) * 100);
-          } else {
-            project.progress = 100;
           }
         });
         vm.stats.projects = _.size(vm.projects);
+        vm.stats.projectsS = (1 < vm.stats.projects) ? 's' : '';
         vm.stats.members = members;
+        vm.stats.membersS = (1 < vm.stats.members) ? 's' : '';
         vm.stats.todos = todos;
+        vm.stats.todosS = (1 < vm.stats.todos) ? 's' : '';
         if (vm.settings.votingEnabled) {
           calculateVotes();
         }
