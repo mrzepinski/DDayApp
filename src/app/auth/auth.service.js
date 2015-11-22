@@ -6,11 +6,13 @@
     .factory('Auth', Auth);
 
   /** @ngInject */
-  function Auth ($firebaseAuth, $firebaseObject, FirebaseRef, $q, $timeout, $state) {
+  function Auth ($firebaseAuth, $firebaseArray, $firebaseObject, FirebaseRef, $q, $timeout, $state) {
     var FirebaseAuth = $firebaseAuth(FirebaseRef.main),
+      users = $firebaseArray(FirebaseRef.users),
       profile = null;
 
     return {
+      getUsers: getUsers,
       isAuthenticated: isAuthenticated,
       getLoggedIn: getLoggedIn,
       getLoggedInProfile: getLoggedInProfile,
@@ -20,6 +22,10 @@
       resetPassword: resetPassword,
       changePassword: changePassword
     };
+
+    function getUsers () {
+      return users;
+    }
 
     function isAuthenticated () {
       return !!FirebaseAuth.$getAuth();

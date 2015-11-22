@@ -12,12 +12,32 @@
         </div>
       </div>
 
-      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col pointer"
-           ng-repeat="project in voting.projects track by $index"
-           ng-click="voting.vote(project.$id)"
-           ng-if="voting.projects.length && voting.settings.votingEnabled">
-        <div class="mdl-card__title" ng-class="{ 'mdl-color--teal mdl-color-text--white': (voting.user.voteForProjectId && voting.user.voteForProjectId === project.$id) }">
-          <div class="mdl-card__title-text">{{ ::project.title }}</div>
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col" ng-if="voting.noRights">
+        <div class="mdl-card__title mdl-color--orange mdl-color-text--white">
+          <div class="mdl-card__title-text">You don't have rights to vote.</div>
+        </div>
+      </div>
+
+      <div class="mdl-cell mdl-cell--12-col" ng-if="!voting.noRights && voting.projects.length && voting.settings.votingEnabled">
+        <p class="md-18">
+          Remaining votes: {{ voting.remainingVotes }}
+          <span class="mdl-progress mdl-js-progress" mdl-upgrade mdl-progress="voting.progress"></span>
+        </p>
+
+        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col"
+             ng-repeat="project in voting.projects track by $index">
+          <div class="mdl-card__title">
+            <span class="mdl-badge md-18" data-badge="{{ voting.voteCount(project.$id) }}" mdl-upgrade>{{ ::voting.truncate(project.title, 48) }}</span>
+            <span class="mdl-layout-spacer"></span>
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect mdl-button--colored"
+                    ng-if="voting.hasVote(project.$id)" ng-click="voting.unvote($event, project.$id)" mdl-upgrade>
+              <i class="material-icons">remove</i>
+            </button>
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect mdl-button--colored"
+                    ng-if="voting.remainingVotes" ng-click="voting.vote(project.$id)" mdl-upgrade>
+              <i class="material-icons">add</i>
+            </button>
+          </div>
         </div>
       </div>
     </div>

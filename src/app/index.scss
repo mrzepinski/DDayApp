@@ -4,34 +4,35 @@
  */
 // bower:scss
 // endbower
-@import url(https://fonts.googleapis.com/css?family=Roboto:300,400,500,700);
-
+@import url('//fonts.googleapis.com/css?family=Roboto:300,400,500,700');
 @import "../../bower_components/material-design-lite/src/variables";
 
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: url('../../bower_components/material-design-icons/iconfont/MaterialIcons-Regular.eot'); /* For IE6-8 */
   src: local('Material Icons'),
   local('MaterialIcons-Regular'),
-  url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
-  url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.woff) format('woff'),
-  url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.ttf) format('truetype');
+  url('../../bower_components/material-design-icons/iconfont/MaterialIcons-Regular.woff2') format('woff2'),
+  url('../../bower_components/material-design-icons/iconfont/MaterialIcons-Regular.woff') format('woff'),
+  url('../../bower_components/material-design-icons/iconfont/MaterialIcons-Regular.ttf') format('truetype');
 }
 
 .material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px; /* Preferred icon size */
   display: inline-block;
   width: 1em;
   height: 1em;
-  text-transform: none;
-  word-wrap: normal;
-  letter-spacing: normal;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  font-family: 'Material Icons';
   line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
@@ -45,9 +46,36 @@
   font-feature-settings: 'liga';
 }
 
-html,
-body {
+.md-18 {
+  font-size: 18px;
+}
 
+.md-24 {
+  font-size: 24px;
+}
+
+.md-36 {
+  font-size: 36px;
+}
+
+.md-48 {
+  font-size: 48px;
+}
+
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.material-icons.md-dark.md-inactive {
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.material-icons.md-light {
+  color: rgba(255, 255, 255, 1);
+}
+
+.material-icons.md-light.md-inactive {
+  color: rgba(255, 255, 255, 0.3);
 }
 
 body {
@@ -189,6 +217,10 @@ ul {
   cursor: pointer;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .mdl-progress {
   position: relative;
   display: block;
@@ -198,6 +230,7 @@ ul {
 
 .mdl-card {
   min-height: 1px;
+  outline: none;
 }
 
 .mdl-card__supporting-text {

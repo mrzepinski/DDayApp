@@ -17,7 +17,7 @@
     };
 
     /** @ngInject */
-    function NavbarController (Auth) {
+    function NavbarController (Auth, toastr) {
       var vm = this,
         isAuthenticated = Auth.isAuthenticated(),
         userProfile = null,
@@ -33,7 +33,7 @@
             route: 'voting',
             label: 'Voting',
             shouldShow: function () {
-              return isAuthenticated && userProfile && userProfile.projectId;
+              return isAuthenticated && userProfile && (userProfile.projectId || 'VIP' === userProfile.role);
             }
           },
           {
@@ -47,7 +47,7 @@
             route: 'settings',
             label: 'Settings',
             shouldShow: function () {
-              return isAuthenticated && userProfile && userProfile.role && ('ADMIN' === userProfile.role);
+              return isAuthenticated && userProfile && ('ADMIN' === userProfile.role);
             }
           },
           {

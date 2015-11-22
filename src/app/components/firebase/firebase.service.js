@@ -8,12 +8,14 @@
   /** @ngInject */
   function FirebaseRef ($window, FIREBASE_URL) {
     var main = new $window.Firebase(FIREBASE_URL);
+    var users = new $window.Firebase([FIREBASE_URL, 'users'].join('/'));
     var projects = new $window.Firebase([FIREBASE_URL, 'projects'].join('/'));
     var votes = new $window.Firebase([FIREBASE_URL, 'votes'].join('/'));
     var settings = new $window.Firebase([FIREBASE_URL, 'settings'].join('/'));
 
     return {
       main: main,
+      users: users,
       userById: userById,
       projects: projects,
       projectById: projectById,

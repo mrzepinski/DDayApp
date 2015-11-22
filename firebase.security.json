@@ -1,9 +1,7 @@
 {
   "rules": {
     "users": {
-      "$uid": {
-        ".read": "null !== auth && $uid === auth.uid"
-      },
+      ".read": true,
       ".write": true
     },
     "projects": {
@@ -15,7 +13,7 @@
     },
     "votes": {
       ".read": true,
-      ".write": "null !== auth && (root.child('users/' + auth.uid).child('projectId').exists() || root.child('users/' + auth.uid).child('vip').exists())"
+      ".write": "null !== auth && (root.child('users/' + auth.uid).child('projectId').exists() || root.child('users/' + auth.uid).child('role').val() === 'VIP')"
     },
     "settings": {
       ".read": true,

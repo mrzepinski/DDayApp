@@ -11,7 +11,7 @@
     "jquery": "2.1.4",
     "angular-ui-router": "0.2.15",
     "material-design-lite": "1.0.6",
-    "material-design-iconfont": "0.0.2",
+    "material-design-icons": "2.0.0",
     "angular-toastr": "1.6.0",
     "moment": "2.10.6",
     "animate.css": "3.4.0",

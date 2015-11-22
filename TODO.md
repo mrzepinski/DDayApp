@@ -7,12 +7,12 @@
 - README on site - technologies, updated text etc.
 - responsive header
 
-### voting - TODO at all
+### voting
 
 - displaying progress of all votes
 - show lables at the end of voting (show 10 secs timeout)
 
-### cms - TODO at all
+### cms
 
 - add optional person with voting rights (vip)
 

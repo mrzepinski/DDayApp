@@ -7,8 +7,25 @@
   <main class="mdl-layout__content">
     <div class="dday-section mdl-grid" ng-if="!main.inProgress">
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--hide-phone mdl-cell--hide-tablet" ng-if="main.settings.votingEnabled">
-        <div class="mdl-card__supporting-text">
-          <canvas chart-bar chart-data="main.votes.data" chart-labels="main.votes.fakeLabels" chart-colours="main.votes.colours"></canvas>
+        <div class="mdl-card__supporting-text" ng-if="main.voting.inProgress">
+          <p class="md-18">
+            Remaining votes: {{ main.voting.remaining }}
+            <span class="mdl-progress mdl-js-progress" mdl-upgrade mdl-progress="main.voting.progress"></span>
+          </p>
+
+          <canvas chart-bar chart-data="main.voting.data" chart-labels="main.voting.fakeLabels" chart-colours="main.voting.colours"></canvas>
+        </div>
+
+        <div class="text-center mdl-card__supporting-text" ng-if="!main.voting.inProgress">
+          <div ng-if="!main.voting.timerFinished">
+            <timer countdown="10" interval="1000" finish-callback="main.voting.stopTimer()">
+              <span class="dday-dashboard--timer--value mdl-color-text--primary">{{ seconds }}</span>
+            </timer>
+          </div>
+
+          <div ng-if="main.voting.timerFinished">
+            <canvas chart-bar chart-data="main.voting.data" chart-labels="main.voting.realLabels" chart-colours="main.voting.colours"></canvas>
+          </div>
         </div>
       </div>
 
