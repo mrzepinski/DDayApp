@@ -11,6 +11,7 @@
     "url": "https://github.com/mrzepinski/DDayApp"
   },
   "license": "MIT",
+  "cacheDirectories": [],
   "dependencies": {
     "bower": "1.6.5",
     "browser-sync": "2.10.0",
