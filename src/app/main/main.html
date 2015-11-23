@@ -93,16 +93,21 @@
           </scrollable>
         </div>
 
+        <div class="mdl-layout-spacer"></div>
+
         <div class="dday-dashboard--project--footer mdl-card__actions mdl-card--border">
           <div class="mdl-grid mdl-grid--no-spacing">
-            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
+            <div class="mdl-cell mdl-cell--12-col">
               <div class="dday-dashboard--project--footer--progress mdl-progress mdl-js-progress" mdl-upgrade mdl-progress="project.progress"></div>
             </div>
-            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
-              <div class="dday-dashboard--project--footer--team">
-                <img src="" gravatar-src="person.email" gravatar-size="30" alt="gravatar"
-                     ng-repeat="person in project.team track by $index" />
-              </div>
+            <div class="mdl-cell mdl-cell--12-col">
+              <ul class="dday-dashboard--project--footer--team">
+                <li ng-repeat="person in project.team track by $index">
+                  <img src="" gravatar-src="person.email" gravatar-size="34" alt="gravatar" />
+                  {{ main.firstPartOfEmail(person.email) }}
+                  <small ng-if="$first">(leader)</small>
+                </li>
+              </ul>
             </div>
           </div>
         </div>

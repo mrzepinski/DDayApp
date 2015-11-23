@@ -38,6 +38,8 @@
       }
     };
 
+    vm.firstPartOfEmail = firstPartOfEmail;
+
     $q.all({
       settings: Settings.all().$loaded(),
       projects: Project.all().$loaded()
@@ -135,6 +137,10 @@
         vm.voting.progress = (allVotesCount - vm.voting.remaining) / allVotesCount * 100;
         vm.voting.inProgress = !!vm.voting.remaining;
       });
+    }
+
+    function firstPartOfEmail (email) {
+      return email.substr(0, email.indexOf('@')) || '';
     }
 
     function handleError (error) {

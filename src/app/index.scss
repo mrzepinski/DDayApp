@@ -175,23 +175,21 @@ ul {
   }
 
   &--project {
-    position: relative;
-    padding-bottom: 48px;
-
     &--desc {
       height: 170px;
     }
 
     &--footer {
-      position: absolute;
-      bottom: 0;
-
       &--progress.mdl-progress {
         height: 30px;
       }
 
       &--team {
-        text-align: right;
+        margin: 0;
+
+        li {
+          line-height: 3em;
+        }
       }
     }
   }
