@@ -176,12 +176,16 @@ ul {
 
   &--project {
     &--desc {
-      height: 170px;
+      flex-grow: 1;
+
+      .text {
+        padding-right: 17px;
+      }
     }
 
     &--footer {
       &--progress.mdl-progress {
-        height: 30px;
+        height: 20px;
       }
 
       &--team {
