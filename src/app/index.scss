@@ -184,15 +184,17 @@ ul {
     }
 
     &--footer {
+      padding: 4px;
+
       &--progress.mdl-progress {
-        height: 20px;
+        height: 10px;
       }
 
       &--team {
         margin: 0;
 
         li {
-          line-height: 3em;
+          line-height: 2.5em;
         }
       }
     }
