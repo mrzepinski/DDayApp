@@ -106,7 +106,6 @@
         if (vm.settings.votingEnabled) {
           calculateVotes();
         }
-        vm.projects = _.shuffle(vm.projects);
       });
     }
 
