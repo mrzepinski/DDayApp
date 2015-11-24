@@ -37,7 +37,7 @@
               projects: Project.all().$loaded(),
               votes: Voting.all().$loaded()
             }).then(function (results) {
-              vm.projects = results.projects;
+              vm.projects = _.shuffle(results.projects);
               allVotesFirebaseArray = results.votes;
               if (allVotesFirebaseArray[loggedIn.uid]) {
                 userVotes = allVotesFirebaseArray[loggedIn.uid];
