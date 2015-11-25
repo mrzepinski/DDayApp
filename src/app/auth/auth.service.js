@@ -8,8 +8,7 @@
   /** @ngInject */
   function Auth ($firebaseAuth, $firebaseArray, $firebaseObject, FirebaseRef, $q, $timeout, $state) {
     var FirebaseAuth = $firebaseAuth(FirebaseRef.main),
-      users = $firebaseArray(FirebaseRef.users),
-      profile = null;
+      users = $firebaseArray(FirebaseRef.users);
 
     return {
       getUsers: getUsers,

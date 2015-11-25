@@ -6,7 +6,7 @@
     .controller('SettingsController', SettingsController);
 
   /** @ngInject */
-  function SettingsController (Settings, Auth, toastr) {
+  function SettingsController (Settings, Auth, Mandrill, toastr) {
 
     var vm = this;
 
@@ -75,8 +75,14 @@
     }
 
     function createVipUser () {
-      Auth.createAccount(vm.vipUser.email, vm.vipUser.pass, false, { role: 'VIP' }).then(function () {
+      Auth.createAccount(vm.vipUser.email, vm.vipUser.pass, false, { role: 'VIP' }).then(function (user) {
         toastr.success('VIP account has been created!');
+        Mandrill.send({
+          toEmail: vm.vipUser.email,
+          toName: user.name,
+          subject: 'DDay VIP account has been created!',
+          message: 'Your password: ' + vm.vipUser.pass
+        });
       }, handleError).finally(function () {
         vm.vipUser.email = '';
         vm.vipUser.pass = '';
@@ -92,6 +98,9 @@
               user.role = 'USER';
               break;
         case 'USER':
+              user.role = 'VIP';
+              break;
+        default:
               user.role = 'VIP';
               break;
       }
