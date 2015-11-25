@@ -6,7 +6,7 @@
     .controller('SettingsController', SettingsController);
 
   /** @ngInject */
-  function SettingsController (Settings, toastr) {
+  function SettingsController (Settings, Auth, toastr) {
 
     var vm = this;
 
@@ -26,8 +26,21 @@
       vm.inProgress = false;
     });
 
+    Auth.getUsers().$loaded(function (users) {
+      vm.users = users;
+    }, handleError);
+
+    vm.vipUser = {
+      email: '',
+      pass: ''
+    };
+
     vm.save = save;
     vm.setDateTime = setDateTime;
+    vm.createVipUser = createVipUser;
+    vm.toggleUserVipRole = toggleUserVipRole;
+    vm.hasAdminRole = hasAdminRole;
+    vm.hasVipRole = hasVipRole;
 
     function save () {
       vm.saving = true;
@@ -59,6 +72,40 @@
       vm.form.dateTime.time = null;
 
       save();
+    }
+
+    function createVipUser () {
+      Auth.createAccount(vm.vipUser.email, vm.vipUser.pass, false, { role: 'VIP' }).then(function () {
+        toastr.success('VIP account has been created!');
+      }, handleError).finally(function () {
+        vm.vipUser.email = '';
+        vm.vipUser.pass = '';
+      });
+    }
+
+    function toggleUserVipRole (user) {
+      if (hasAdminRole(user)) {
+        return;
+      }
+      switch (user.role) {
+        case 'VIP':
+              user.role = 'USER';
+              break;
+        case 'USER':
+              user.role = 'VIP';
+              break;
+      }
+      vm.users.$save(user).then(function () {
+        toastr.success('User: ' + user.name + ' has "' + user.role + '" role now.');
+      }, handleError);
+    }
+
+    function hasAdminRole (user) {
+      return 'ADMIN' === user.role;
+    }
+
+    function hasVipRole (user) {
+      return 'VIP' === user.role;
     }
 
     function handleError (error) {

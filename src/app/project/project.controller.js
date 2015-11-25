@@ -24,7 +24,7 @@
 
     Auth.getLoggedIn().then(function (loggedIn) {
       vm.loggedIn = loggedIn;
-      Auth.getLoggedInProfile(vm.loggedIn.uid).then(function (user) {
+      Auth.getLoggedInProfile(vm.loggedIn.uid).$loaded(function (user) {
         vm.user = user;
         vm.raw.team.push({
           email: vm.loggedIn.password.email

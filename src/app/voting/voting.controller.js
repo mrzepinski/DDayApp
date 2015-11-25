@@ -20,7 +20,7 @@
 
     Auth.getLoggedIn().then(function (loggedInResp) {
       loggedIn = loggedInResp;
-      Auth.getLoggedInProfile(loggedIn.uid).then(function (userResp) {
+      Auth.getLoggedInProfile(loggedIn.uid).$loaded(function (userResp) {
         userFirebaseObj = userResp;
         if (!Voting.hasVotingRights(userFirebaseObj)) {
           vm.noRights = false;

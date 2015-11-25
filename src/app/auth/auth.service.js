@@ -36,12 +36,7 @@
     }
 
     function getLoggedInProfile (uid) {
-      if (!profile) {
-        profile = $q(function (resolve, reject) {
-          $firebaseObject(FirebaseRef.userById(uid)).$loaded(resolve, reject);
-        });
-      }
-      return profile;
+      return $firebaseObject(FirebaseRef.userById(uid));
     }
 
     function login (email, pass, rememberMe) {
@@ -58,28 +53,32 @@
       $state.transitionTo('auth');
     }
 
-    function createAccount (email, pass) {
+    function createAccount (email, pass, withLogin, userData) {
       return $q(function (resolve, reject) {
         FirebaseAuth.$createUser({
           email: email,
           password: pass
-        }).then(function () {
-          return FirebaseAuth.$authWithPassword({
-            email: email,
-            password: pass
-          }, {
-            rememberMe: true
-          });
-        }).then(createProfile).then(resolve, reject);
+        })
+        .then(function (user) {
+          if (withLogin) {
+            return login(email, pass, true);
+          }
+          return user;
+        })
+        .then(createProfile)
+        .then(resolve, reject);
 
         function createProfile (user) {
           var ref = FirebaseRef.userById(user.uid);
-
           return $q(function (resolve, reject) {
-            ref.set({
+            var userObj = {
               email: email,
               name: firstPartOfEmail(email)
-            }, function (err) {
+            };
+            if (userData) {
+              userObj = angular.extend(userObj, userData);
+            }
+            ref.set(userObj, function (err) {
               $timeout(function () {
                 if (err) {
                   reject(err);

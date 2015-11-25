@@ -6,9 +6,9 @@
 
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="" ng-repeat="item in navbar.links track by item.route"
-         ui-sref-active="mdl-navigation__link--current" ng-if="::item.route" ui-sref="{{ ::item.route }}">{{ ::item.label }}</a>
+         ui-sref-active="mdl-navigation__link--current" ng-if="item.route" ui-sref="{{ item.route }}">{{ item.label }}</a>
       <a class="mdl-navigation__link" href="" ng-repeat="item in navbar.links track by item.route"
-         ng-if="::item.onClick" ng-click="::item.onClick()">{{ ::item.label }}</a>
+         ng-if="item.onClick" ng-click="item.onClick()">{{ item.label }}</a>
     </nav>
   </div>
 

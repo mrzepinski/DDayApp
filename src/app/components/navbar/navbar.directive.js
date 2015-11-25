@@ -26,7 +26,7 @@
             route: 'project',
             label: 'Project',
             shouldShow: function () {
-              return isAuthenticated;
+              return isAuthenticated && userProfile && ('VIP' !== userProfile.role);
             }
           },
           {
@@ -76,7 +76,7 @@
 
       if (isAuthenticated) {
         Auth.getLoggedIn().then(function (loggedIn) {
-          Auth.getLoggedInProfile(loggedIn.uid).then(function (user) {
+          Auth.getLoggedInProfile(loggedIn.uid).$loaded(function (user) {
             userProfile = user;
             filterLinks();
           }, handleError);

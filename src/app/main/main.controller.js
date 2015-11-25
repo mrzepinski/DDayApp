@@ -132,9 +132,9 @@
             vm.voting.data[0].push(0);
           }
         });
-        vm.voting.remaining = allVotesCount - _.reduce(vm.voting.data[0], function (total, n) {
-            return total + n;
-          });
+        vm.voting.remaining = (allVotesCount - _.reduce(vm.voting.data[0], function (total, n) {
+          return total + n;
+        }));
         vm.voting.progress = (allVotesCount - vm.voting.remaining) / allVotesCount * 100;
         vm.voting.inProgress = !!vm.voting.remaining;
       });

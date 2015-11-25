@@ -88,6 +88,7 @@ main {
 }
 
 ul {
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -191,12 +192,18 @@ ul {
       }
 
       &--team {
-        margin: 0;
-
         li {
           line-height: 2.5em;
         }
       }
+    }
+  }
+}
+
+.dday-settings {
+  &--user-list {
+    li {
+      line-height: 2.5em;
     }
   }
 }

@@ -4,12 +4,8 @@
 
 - tests!
 - travis CI (after tests)
-- README on site - technologies, updated text etc.
+- README on site - technologies etc.
 - responsive header
-
-### cms
-
-- add optional person with voting rights (vip)
 
 ### mailing
 
