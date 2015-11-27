@@ -53,7 +53,8 @@
         }
       });
 
-      if (vm.settings.votingEnabled) {
+      if (vm.settings.votingEnabled || vm.settings.votingResultsVisible) {
+        vm.voting.timerFinished = !!vm.settings.votingResultsVisible;
         $q.all({
           users: Auth.getUsers().$loaded(),
           votes: Voting.all().$loaded()
@@ -81,8 +82,8 @@
 
     function setUpProjects () {
       $timeout(function () {
-        var members = 0;
-        var todos = 0;
+        var members = 0,
+          todos = 0;
         vm.voting.fakeLabels = _.fill(Array(_.size(vm.projects)), '?');
         projectsIds = _.pluck(vm.projects, '$id');
         vm.voting.realLabels = _.map(_.pluck(vm.projects, 'title'), function (title) {
@@ -137,6 +138,11 @@
         }));
         vm.voting.progress = (allVotesCount - vm.voting.remaining) / allVotesCount * 100;
         vm.voting.inProgress = !!vm.voting.remaining;
+        if (!vm.voting.inProgress) {
+          vm.settings.votingEnabled = false;
+          vm.settings.votingResultsVisible = true;
+          vm.settings.$save(null, handleError);
+        }
       });
     }
 

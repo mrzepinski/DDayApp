@@ -53,6 +53,14 @@
                 voting enabled?
               </span>
           </label>
+
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="formVotingResultsVisible" mdl-upgrade>
+            <input type="checkbox" id="formVotingResultsVisible" class="mdl-checkbox__input"
+                   ng-model="settings.data.votingResultsVisible" ng-change="settings.save()">
+              <span class="mdl-checkbox__label">
+                voting results visible?
+              </span>
+          </label>
         </div>
       </div>
 
@@ -86,10 +94,7 @@
               <img src="" gravatar-src="user.email" gravatar-size="34" alt="gravatar" />
               {{ user.name }}
               <i class="material-icons" ng-if="settings.hasAdminRole(user)">verified_user</i>
-              <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect mdl-button--colored"
-                      ng-if="!settings.hasAdminRole(user)" ng-click="settings.toggleUserVipRole(user)" mdl-upgrade>
-                <i class="material-icons">{{ settings.hasVipRole(user) ? 'star' : 'star_border' }}</i>
-              </button>
+              <i class="material-icons" ng-if="settings.hasVipRole(user)">star</i>
             </li>
           </ul>
         </div>

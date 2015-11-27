@@ -38,7 +38,6 @@
     vm.save = save;
     vm.setDateTime = setDateTime;
     vm.createVipUser = createVipUser;
-    vm.toggleUserVipRole = toggleUserVipRole;
     vm.hasAdminRole = hasAdminRole;
     vm.hasVipRole = hasVipRole;
 
@@ -87,26 +86,6 @@
         vm.vipUser.email = '';
         vm.vipUser.pass = '';
       });
-    }
-
-    function toggleUserVipRole (user) {
-      if (hasAdminRole(user)) {
-        return;
-      }
-      switch (user.role) {
-        case 'VIP':
-              user.role = 'USER';
-              break;
-        case 'USER':
-              user.role = 'VIP';
-              break;
-        default:
-              user.role = 'VIP';
-              break;
-      }
-      vm.users.$save(user).then(function () {
-        toastr.success('User: ' + user.name + ' has "' + user.role + '" role now.');
-      }, handleError);
     }
 
     function hasAdminRole (user) {
