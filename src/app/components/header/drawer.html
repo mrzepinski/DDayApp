@@ -1,0 +1,8 @@
+<div class="mdl-layout__drawer mdl-layout--small-screen-only" mdl-upgrade>
+  <nav class="mdl-navigation">
+    <a class="mdl-navigation__link" href="" ng-repeat="item in header.links track by item.route"
+       ng-if="item.route" ui-sref="{{ item.route }}">{{ item.label }}</a>
+    <a class="mdl-navigation__link" href="" ng-repeat="item in header.links track by item.route"
+       ng-if="item.onClick" ng-click="item.onClick()">{{ item.label }}</a>
+  </nav>
+</div>

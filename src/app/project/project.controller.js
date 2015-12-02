@@ -6,7 +6,7 @@
     .controller('ProjectController', ProjectController);
 
   /** @ngInject */
-  function ProjectController (Auth, Project, toastr) {
+  function ProjectController (Auth, Project, toastr, $window) {
     var vm = this;
 
     vm.inProgress = true;
@@ -116,6 +116,11 @@
     }
 
     function removeProject () {
+      var result = $window.confirm('Really?!');
+      if (!result) {
+        return;
+      }
+
       vm.inProgress = true;
       vm.model.$remove().then(function () {
         vm.addOrUpdateMode = true;

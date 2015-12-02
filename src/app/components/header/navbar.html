@@ -1,0 +1,16 @@
+<header class="mdl-layout__header mdl-layout__header--scroll" mdl-upgrade>
+  <div class="mdl-layout__header-row">
+    <span class="mdl-layout-title mdl-badge" data-badge="™">DDayApp</span>
+
+    <div class="mdl-layout-spacer"></div>
+
+    <nav class="mdl-navigation mdl-layout--large-screen-only">
+      <a class="mdl-navigation__link" href="" ng-repeat="item in header.links track by item.route"
+         ui-sref-active="mdl-color--primary-dark" ng-if="item.route" ui-sref="{{ item.route }}">{{ item.label }}</a>
+      <a class="mdl-navigation__link" href="" ng-repeat="item in header.links track by item.route"
+         ng-if="item.onClick" ng-click="item.onClick()">{{ item.label }}</a>
+    </nav>
+  </div>
+
+  <div ng-transclude></div>
+</header>

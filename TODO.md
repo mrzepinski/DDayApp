@@ -5,7 +5,6 @@
 - tests!
 - travis CI (after tests)
 - README on site - technologies etc.
-- responsive header
 
 ### mailing
 

@@ -4,6 +4,8 @@
     <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="project.inProgress" mdl-upgrade></div>
   </navbar>
 
+  <drawer></drawer>
+
   <main class="mdl-layout__content">
     <div class="dday-section mdl-grid" ng-if="!project.inProgress">
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
@@ -42,7 +44,31 @@
 
             <div btf-markdown="project.model.description"></div>
           </div>
+        </div>
 
+        <div class="mdl-card__actions mdl-card--border" ng-if="project.addOrUpdateMode">
+          <div class="pull-right">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--primary"
+                    type="submit" ng-click="project.addOrUpdateProject()" mdl-upgrade>
+              <i class="material-icons">save</i>
+            </button>
+          </div>
+        </div>
+
+        <div class="mdl-card__menu" ng-if="!project.addOrUpdateMode">
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--primary"
+                  type="button" ng-click="project.updateMode()" mdl-upgrade>
+            <i class="material-icons">edit</i>
+          </button>
+          <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--colored"
+                  type="button" ng-click="project.removeProject()" mdl-upgrade>
+            <i class="material-icons">clear</i>
+          </button>
+        </div>
+      </div>
+
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col" ng-if="!project.addOrUpdateMode">
+        <div class="mdl-card__supporting-text">
           <h5>Todos</h5>
 
           <ul class="dday-project--todos-list" dnd-list="project.model.todos">
@@ -98,10 +124,14 @@
 
             <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect"
                     type="submit" mdl-upgrade>
-              <i class="material-icons">save</i>
+              <i class="material-icons">add</i>
             </button>
           </form>
+        </div>
+      </div>
 
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col" ng-if="!project.addOrUpdateMode">
+        <div class="mdl-card__supporting-text">
           <h5>Team</h5>
 
           <ul class="dday-project--team-list">
@@ -124,26 +154,9 @@
 
             <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect"
                     type="submit" mdl-upgrade>
-              <i class="material-icons">save</i>
+              <i class="material-icons">add</i>
             </button>
           </form>
-
-          <div class="mdl-card__actions mdl-card--border">
-            <div class="pull-right">
-              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--primary"
-                      type="submit" ng-if="project.addOrUpdateMode" ng-click="project.addOrUpdateProject()" mdl-upgrade>
-                <i class="material-icons">save</i>
-              </button>
-              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--primary"
-                      type="button" ng-if="!project.addOrUpdateMode" ng-click="project.updateMode()" mdl-upgrade>
-                <i class="material-icons">edit</i>
-              </button>
-              <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored"
-                      type="button" ng-if="!project.addOrUpdateMode" ng-click="project.removeProject()" mdl-upgrade>
-                <i class="material-icons">clear</i>
-              </button>
-            </div>
-          </div>
         </div>
 
         <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="project.addOrUpdateInProgress" mdl-upgrade></div>
