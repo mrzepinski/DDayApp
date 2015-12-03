@@ -206,6 +206,14 @@ ul {
       line-height: 2.5em;
     }
   }
+
+  &--desc {
+    height: 340px;
+
+    .text {
+      padding-right: 17px;
+    }
+  }
 }
 
 .pull-left {

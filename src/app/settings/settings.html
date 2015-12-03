@@ -102,6 +102,41 @@
         </div>
       </div>
 
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+        <div class="mdl-card__title">
+          <div class="mdl-card__title-text">Readme</div>
+        </div>
+
+        <div class="mdl-card__supporting-text">
+          <div class="mdl-grid mdl-grid--no-spacing">
+            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
+              <div class="dday-project mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+                <textarea id="description" class="mdl-textfield__input" rows="16" ng-model="settings.data.readme"></textarea>
+                <label for="description" class="mdl-textfield__label">description</label>
+              </div>
+              <div class="mdl-layout-spacer"></div>
+              <small>(you can use <a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">markdown syntax</a>)</small>
+            </div>
+            <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
+              <div class="dday-settings--desc">
+                <scrollable always-visible="true">
+                  <div class="text" btf-markdown="settings.data.readme"></div>
+                </scrollable>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mdl-card__actions mdl-card--border">
+          <div class="pull-right">
+            <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-js-ripple-effect mdl-button--primary"
+                    type="submit" ng-click="settings.save()" mdl-upgrade>
+              <i class="material-icons">save</i>
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </main>
 

@@ -1,0 +1,19 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" mdl-upgrade>
+
+  <navbar>
+    <div class="mdl-progress mdl-js-progress mdl-progress__indeterminate" ng-if="readme.inProgress" mdl-upgrade></div>
+  </navbar>
+
+  <drawer></drawer>
+
+  <main class="mdl-layout__content">
+    <div class="dday-section mdl-grid" ng-if="!readme.inProgress">
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+        <div class="mdl-card__supporting-text" btf-markdown="readme.settings.readme"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer></footer>
+
+</div>

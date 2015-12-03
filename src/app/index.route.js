@@ -46,6 +46,12 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
+      .state('readme', {
+        url: '/readme',
+        templateUrl: 'app/readme/readme.html',
+        controller: 'ReadmeController',
+        controllerAs: 'readme'
+      })
       .state('auth', {
         url: '/auth',
         templateUrl: 'app/auth/auth.html',

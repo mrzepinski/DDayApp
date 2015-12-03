@@ -1,4 +1,5 @@
 # DDayApp
+
 Delivery Day [D-Day] framework
 
 Reccuring, voluntary programming event, based on the hackathon idea, organized by the Development and Architecture Team and Wolters Kluwer SA, together with employees and business representatives. Work facilities and refreshement will be made available during the event.
@@ -22,14 +23,13 @@ Reccuring, voluntary programming event, based on the hackathon idea, organized b
 * 18:00 - Presentations of the projects and selecting the winners (60 minutes)
 * 19:00 - After party
  
-
 # Ideas
 
 The submitted idea must be related to one of the WK products or improvements in the operation of the team / department or company. The idea should be based on your concept,  rather than functionality assigned to development tasks.
 
 # Teams
 
-You have freedom and flexibility in team building from the perspective of location and structure of Architecture and Development Department. You can invite team members from other company departments. The team can have up to 5 people. We can use any technology with one remark: we have to support deployed product in the future.
+You have freedom and flexibility in team building from the perspective of location and structure of Architecture and Development Department. You can invite team members from other company departments. The team can have up to 5 and minimum 2 people. We can use any technology with one remark: we have to support deployed product in the future.
 
 # Ideas presentations
 

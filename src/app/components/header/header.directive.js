@@ -36,6 +36,13 @@
       userProfile = null,
       links = [
         {
+          route: 'dashboard',
+          label: 'Dashboard',
+          shouldShow: function () {
+            return true;
+          }
+        },
+        {
           route: 'project',
           label: 'Project',
           shouldShow: function () {
@@ -64,6 +71,13 @@
           }
         },
         {
+          route: 'readme',
+          label: 'Readme',
+          shouldShow: function () {
+            return true;
+          }
+        },
+        {
           route: 'auth',
           label: 'Login',
           shouldShow: function () {
@@ -80,12 +94,7 @@
         }
       ];
 
-    vm.links = [
-      {
-        route: 'dashboard',
-        label: 'Dashboard'
-      }
-    ];
+    vm.links = [];
 
     if (isAuthenticated) {
       Auth.getLoggedIn().then(function (loggedIn) {

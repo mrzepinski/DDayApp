@@ -4,7 +4,7 @@
 
 - tests!
 - travis CI (after tests)
-- README on site - technologies etc.
+- screens & screencasts
 
 ### mailing
 
