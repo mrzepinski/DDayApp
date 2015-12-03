@@ -23,10 +23,8 @@
       if (toState.authenticate && !isAuthenticated) {
         $state.transitionTo('auth');
         event.preventDefault();
-      } else if (!toState.authenticate && isAuthenticated) {
-        if (_.contains([$state.current.name, toState.name], 'dashboard')) {
-          return;
-        }
+      }
+      if (false === toState.authenticate && isAuthenticated) {
         $state.transitionTo('dashboard');
         event.preventDefault();
       }
@@ -56,7 +54,8 @@
         url: '/auth',
         templateUrl: 'app/auth/auth.html',
         controller: 'AuthController',
-        controllerAs: 'auth'
+        controllerAs: 'auth',
+        authenticate: false
       })
       .state('account', {
         url: '/account',
