@@ -75,6 +75,10 @@
       } else {
         vm.inProgress = false;
       }
+
+      if (vm.settings.shoutboxVisible) {
+        vm.shoutboxValues = _.pluck(vm.settings.shoutboxValues, 'value');
+      }
     }, function (error) {
       vm.inProgress = false;
       handleError(error);

@@ -4,6 +4,7 @@
 
   angular
     .module('ddayApp')
-    .constant('moment', moment);
+    .constant('moment', moment)
+    .constant('malarkey', malarkey);
 
 })();

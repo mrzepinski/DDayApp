@@ -13,6 +13,75 @@
 
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
         <div class="mdl-card__title">
+          <div class="mdl-card__title-text">Shoutbox</div>
+        </div>
+
+        <div class="mdl-card__supporting-text">
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="formShoutboxVisible" mdl-upgrade>
+            <input type="checkbox" id="formShoutboxVisible" class="mdl-checkbox__input"
+                   ng-model="settings.data.shoutboxVisible" ng-change="settings.save()">
+              <span class="mdl-checkbox__label">
+                shoutbox visible?
+              </span>
+          </label>
+
+          <hr />
+
+          <ul class="dday-settings--shoutbox" dnd-list="settings.data.shoutboxValues">
+            <li ng-repeat="shout in settings.data.shoutboxValues"
+                dnd-draggable="shout" dnd-moved="settings.reorderShouts($index)">
+                <span ng-hide="shout.editMode">
+                  <span class="pointer" ng-click="settings.editShoutStart(shout)">
+                    {{ shout.value }}
+                  </span>
+
+                  <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect mdl-button--colored"
+                          ng-click="settings.removeShout($index)" mdl-upgrade>
+                    <i class="material-icons">clear</i>
+                  </button>
+                </span>
+
+                <span ng-if="shout.editMode">
+                  <form ng-submit="settings.editShoutDone($index, shout)">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+                      <input id="edit.shoutValue" class="mdl-textfield__input" type="text"
+                             ng-model="shout.value" ng-model-options="{ debounce: 500 }"
+                             ng-keyup="settings.ediShoutCheckIfStop($event, shout)" input-focus />
+                      <label for="edit.shoutValue" class="mdl-textfield__label"></label>
+                    </div>
+
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect"
+                            mdl-upgrade>
+                      <i class="material-icons">save</i>
+                    </button>
+
+                    <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect"
+                            type="submit" ng-click="settings.editShoutStop(shout)" mdl-upgrade>
+                      <i class="material-icons">cancel</i>
+                    </button>
+                  </form>
+                </span>
+            </li>
+
+            <li class="dndPlaceholder">&nbsp;</li>
+          </ul>
+
+          <form ng-submit="settings.createShout()">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+              <input id="shoutValue" class="mdl-textfield__input" type="text" ng-model="settings.shout.value" />
+              <label for="shoutValue" class="mdl-textfield__label">shout</label>
+            </div>
+
+            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect"
+                    type="submit" mdl-upgrade>
+              <i class="material-icons">add</i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+        <div class="mdl-card__title">
           <div class="mdl-card__title-text">Timer</div>
         </div>
 
@@ -110,7 +179,7 @@
         <div class="mdl-card__supporting-text">
           <div class="mdl-grid mdl-grid--no-spacing">
             <div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col-tablet mdl-cell--6-col-desktop">
-              <div class="dday-project mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
+              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
                 <textarea id="description" class="mdl-textfield__input" rows="16" ng-model="settings.data.readme"></textarea>
                 <label for="description" class="mdl-textfield__label">description</label>
               </div>

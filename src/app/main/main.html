@@ -9,6 +9,17 @@
   <main class="mdl-layout__content">
     <div class="dday-section mdl-grid" ng-if="!main.inProgress">
       <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--hide-phone mdl-cell--hide-tablet"
+           ng-if="main.settings.shoutboxVisible">
+        <div class="mdl-card__title">
+          <shoutbox values="main.shoutboxValues"></shoutbox>
+        </div>
+      </div>
+
+      <div class="mdl-cell mdl-cell--12-col mdl-cell--hide-phone mdl-cell--hide-tablet" ng-if="main.settings.shoutboxVisible">
+        <hr />
+      </div>
+
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--hide-phone mdl-cell--hide-tablet"
            ng-if="main.settings.votingEnabled || main.settings.votingResultsVisible">
         <div class="mdl-card__supporting-text" ng-if="main.voting.inProgress">
           <p class="md-18">
@@ -32,7 +43,7 @@
         </div>
       </div>
 
-      <div class="mdl-cell mdl-cell--12-col mdl-cell--hide-phone mdl-cell--hide-tablet" ng-if="main.settings.votingEnabled">
+      <div class="mdl-cell mdl-cell--12-col mdl-cell--hide-phone mdl-cell--hide-tablet" ng-if="main.settings.votingEnabled || main.settings.votingResultsVisible">
         <hr />
       </div>
 

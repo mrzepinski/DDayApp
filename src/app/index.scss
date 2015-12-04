@@ -98,124 +98,6 @@ ul {
   max-width: 1140px;
 }
 
-.dday-project {
-  &.mdl-textfield {
-    width: 95%;
-  }
-
-  &--desc {
-    height: 170px;
-
-    .text {
-      padding-right: 17px;
-    }
-  }
-
-  &--todos-list {
-    li {
-      line-height: 2.5em;
-
-      label.mdl-checkbox {
-        width: auto;
-      }
-
-      &.dndPlaceholder {
-        border: 1px dashed #ccc;
-      }
-    }
-  }
-
-  &--team-list {
-    li {
-      line-height: 2.5em;
-    }
-  }
-}
-
-.dday-dashboard {
-  &--timer {
-    height: 200px;
-    text-align: center;
-
-    &.mdl-card__supporting-text {
-      width: 100%;
-      padding: 0;
-    }
-
-    &--value {
-      margin: 0;
-      font-size: 10em;
-      line-height: 1em;
-    }
-
-    &--title {
-      margin: 0;
-      font-size: 1.8em;
-    }
-  }
-
-  &--stats {
-    height: 200px;
-    text-align: center;
-
-    &.mdl-card__supporting-text {
-      width: 100%;
-      padding: 0;
-    }
-
-    &--value {
-      margin: 0;
-      font-size: 12em;
-      line-height: 1em;
-    }
-
-    &--title {
-      margin: 0;
-      font-size: 1.8em;
-    }
-  }
-
-  &--project {
-    &--desc {
-      flex-grow: 1;
-
-      .text {
-        padding-right: 17px;
-      }
-    }
-
-    &--footer {
-      padding: 4px;
-
-      &--progress.mdl-progress {
-        height: 10px;
-      }
-
-      &--team {
-        li {
-          line-height: 2.5em;
-        }
-      }
-    }
-  }
-}
-
-.dday-settings {
-  &--user-list {
-    li {
-      line-height: 2.5em;
-    }
-  }
-
-  &--desc {
-    height: 340px;
-
-    .text {
-      padding-right: 17px;
-    }
-  }
-}
-
 .pull-left {
   float: left;
 }
@@ -265,6 +147,10 @@ ul {
 
 .mdl-mini-footer {
   padding: 12px;
+}
+
+.mdl-textfield {
+  width: 95%;
 }
 
 /**

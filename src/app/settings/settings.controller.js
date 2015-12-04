@@ -20,6 +20,10 @@
       }
     };
 
+    vm.shout = {
+      value: ''
+    };
+
     Settings.all().$loaded(function (data) {
       vm.data = data;
     }, handleError).finally(function () {
@@ -36,6 +40,13 @@
     };
 
     vm.save = save;
+    vm.createShout = createShout;
+    vm.removeShout = removeShout;
+    vm.editShoutStart = editShoutStart;
+    vm.editShoutStop = editShoutStop;
+    vm.editShoutDone = editShoutDone;
+    vm.editShoutCheckIfStop = editShoutCheckIfStop;
+    vm.reorderShouts = reorderShouts;
     vm.setDateTime = setDateTime;
     vm.createVipUser = createVipUser;
     vm.hasAdminRole = hasAdminRole;
@@ -48,6 +59,55 @@
       }, handleError).finally(function () {
         vm.saving = false;
       });
+    }
+
+    function createShout () {
+      var value = vm.shout.value.trim();
+      if (!value) {
+        return;
+      }
+
+      if (!vm.data.shoutboxValues) {
+        vm.data.shoutboxValues = [];
+      }
+
+      vm.data.shoutboxValues.push({
+        value: value
+      });
+      save();
+      vm.shout.value = '';
+    }
+
+    function removeShout ($index) {
+      vm.data.shoutboxValues.splice($index, 1);
+      save();
+    }
+
+    function editShoutStart (shout) {
+      shout.editMode = true;
+    }
+
+    function editShoutStop (shout) {
+      shout.editMode = false;
+    }
+
+    function editShoutDone ($index, shout) {
+      if (!shout.value.trim()) {
+        removeShout($index);
+      } else {
+        delete shout.editMode;
+        save();
+      }
+    }
+
+    function editShoutCheckIfStop ($event, shout) {
+      if (27 === $event.keyCode) {
+        editShoutStop(shout);
+      }
+    }
+
+    function reorderShouts ($index) {
+      removeShout($index);
     }
 
     function setDateTime () {
