@@ -23,7 +23,7 @@
            ng-if="main.settings.votingEnabled || main.settings.votingResultsVisible">
         <div class="mdl-card__supporting-text" ng-if="main.voting.inProgress">
           <p class="md-18">
-            Remaining votes: {{ main.voting.remaining }}
+            Remaining votes: <strong>{{ main.voting.remaining }}</strong> (VIPs: <strong>{{ main.voting.numerOfVotesForVips }} votes)</strong>
             <span class="mdl-progress mdl-js-progress" mdl-upgrade mdl-progress="main.voting.progress"></span>
           </p>
 

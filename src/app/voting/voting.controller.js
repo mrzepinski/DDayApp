@@ -28,8 +28,6 @@
           return;
         }
 
-        availableVotesForUserRole = Voting.getAvailableVotesForRole(userFirebaseObj.role);
-
         vm.settings = Settings.all();
         vm.settings.$loaded(function () {
           if (vm.settings.votingEnabled) {
@@ -38,6 +36,7 @@
               votes: Voting.all().$loaded()
             }).then(function (results) {
               vm.projects = _.shuffle(results.projects);
+              availableVotesForUserRole = Voting.getAvailableVotesForRole(userFirebaseObj.role, vm.projects.length);
               allVotesFirebaseArray = results.votes;
               if (allVotesFirebaseArray[loggedIn.uid]) {
                 userVotes = allVotesFirebaseArray[loggedIn.uid];
