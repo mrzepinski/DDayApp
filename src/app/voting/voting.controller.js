@@ -36,6 +36,7 @@
               votes: Voting.all().$loaded()
             }).then(function (results) {
               vm.projects = _.shuffle(results.projects);
+              _.remove(vm.projects, { $id: userFirebaseObj.projectId });
               availableVotesForUserRole = Voting.getAvailableVotesForRole(userFirebaseObj.role, vm.projects.length);
               allVotesFirebaseArray = results.votes;
               if (allVotesFirebaseArray[loggedIn.uid]) {
