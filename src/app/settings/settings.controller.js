@@ -34,11 +34,6 @@
       vm.users = users;
     }, handleError);
 
-    vm.vipUser = {
-      email: '',
-      pass: ''
-    };
-
     vm.save = save;
     vm.createShout = createShout;
     vm.removeShout = removeShout;
@@ -48,9 +43,7 @@
     vm.editShoutCheckIfStop = editShoutCheckIfStop;
     vm.reorderShouts = reorderShouts;
     vm.setDateTime = setDateTime;
-    vm.createVipUser = createVipUser;
     vm.hasAdminRole = hasAdminRole;
-    vm.hasVipRole = hasVipRole;
 
     function save () {
       vm.saving = true;
@@ -133,27 +126,8 @@
       save();
     }
 
-    function createVipUser () {
-      Auth.createAccount(vm.vipUser.email, vm.vipUser.pass, false, { role: 'VIP' }).then(function (user) {
-        toastr.success('VIP account has been created!');
-        Mandrill.send({
-          toEmail: vm.vipUser.email,
-          toName: user.name,
-          subject: 'DDay VIP account has been created!',
-          message: 'Your password: ' + vm.vipUser.pass
-        });
-      }, handleError).finally(function () {
-        vm.vipUser.email = '';
-        vm.vipUser.pass = '';
-      });
-    }
-
     function hasAdminRole (user) {
       return 'ADMIN' === user.role;
-    }
-
-    function hasVipRole (user) {
-      return 'VIP' === user.role;
     }
 
     function handleError (error) {

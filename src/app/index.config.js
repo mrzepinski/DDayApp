@@ -4,7 +4,7 @@
   angular
     .module('ddayApp')
     .config(config)
-    .constant('FIREBASE_URL', 'https://ddayappdev.firebaseio.com');
+    .constant('FIREBASE_URL', 'https://ddayappwkpl.firebaseio.com');
 
   /** @ngInject */
   function config ($logProvider, toastrConfig) {

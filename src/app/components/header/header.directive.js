@@ -46,14 +46,14 @@
           route: 'project',
           label: 'Project',
           shouldShow: function () {
-            return isAuthenticated && userProfile && ('VIP' !== userProfile.role);
+            return isAuthenticated && userProfile;
           }
         },
         {
           route: 'voting',
           label: 'Voting',
           shouldShow: function () {
-            return isAuthenticated && userProfile && (userProfile.projectId || 'VIP' === userProfile.role);
+            return isAuthenticated && userProfile && userProfile.projectId;
           }
         },
         {

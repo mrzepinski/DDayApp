@@ -2,7 +2,6 @@
   "name": "ddayApp",
   "version": "0.0.1",
   "scripts": {
-    "test": "gulp test",
     "install": "bower install && gulp build",
     "start": "node server.js"
   },
@@ -45,7 +44,6 @@
     "gulp-uglify": "1.5.1",
     "gulp-useref": "1.3.0",
     "gulp-util": "3.0.7",
-    "http-proxy-middleware": "0.9.0",
     "karma": "0.13.15",
     "karma-angular-filesort": "1.0.1",
     "karma-coverage": "0.5.3",
@@ -59,8 +57,5 @@
     "uglify-save-license": "0.4.1",
     "wiredep": "2.2.2",
     "wrench": "1.5.8"
-  },
-  "engines": {
-    "node": ">=0.12.0"
   }
 }

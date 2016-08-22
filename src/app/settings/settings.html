@@ -141,31 +141,11 @@
         </div>
 
         <div class="mdl-card__supporting-text">
-          <form ng-submit="settings.createVipUser()">
-            <div class="md-18">Create VIP account</div>
-
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
-              <input id="userEmail" class="mdl-textfield__input" type="email" ng-model="settings.vipUser.email" />
-              <label for="userEmail" class="mdl-textfield__label">e-mail address</label>
-            </div>
-
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" mdl-upgrade>
-              <input id="userPassword" class="mdl-textfield__input" type="password" ng-model="settings.vipUser.pass" />
-              <label for="userPassword" class="mdl-textfield__label">password</label>
-            </div>
-
-            <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--mini-icon mdl-js-ripple-effect"
-                    type="submit" mdl-upgrade>
-              <i class="material-icons">add</i>
-            </button>
-          </form>
-
           <ul class="dday-settings--user-list">
             <li ng-repeat="user in settings.users track by $index">
               <img src="" gravatar-src="user.email" gravatar-size="34" alt="gravatar" />
               {{ user.name }}
               <i class="material-icons" ng-if="settings.hasAdminRole(user)">verified_user</i>
-              <i class="material-icons" ng-if="settings.hasVipRole(user)">star</i>
             </li>
           </ul>
         </div>

@@ -13,7 +13,7 @@
     },
     "votes": {
       ".read": true,
-      ".write": "null !== auth && (root.child('users/' + auth.uid).child('projectId').exists() || root.child('users/' + auth.uid).child('role').val() === 'VIP')"
+      ".write": "null !== auth && root.child('users/' + auth.uid).child('projectId').exists()"
     },
     "settings": {
       ".read": true,

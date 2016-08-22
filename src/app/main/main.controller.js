@@ -61,8 +61,6 @@
         }).then(function (results) {
           users = results.users;
           calculateVotesSize();
-          vm.voting.numerOfVotesForVips = Voting.getAvailableVotesForRole('VIP', vm.projects.length);
-
           rawVotes = results.votes;
           calculateVotes();
           rawVotes.$watch(function (e) {
@@ -117,9 +115,10 @@
     }
 
     function calculateVotesSize () {
+      var availableVotesForProject = Voting.getAvailableVotesForProject();
       _.each(users, function (user) {
         if (Voting.hasVotingRights(user)) {
-          allVotesCount += Voting.getAvailableVotesForRole(user.role, vm.projects.length);
+          allVotesCount += availableVotesForProject;
         }
       });
     }

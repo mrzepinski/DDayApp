@@ -8,13 +8,13 @@
   /** @ngInject */
   function Voting (FirebaseRef, $firebaseObject) {
 
-    var DEFAULT_NUMBER_OF_VOTES = 2,
+    var DEFAULT_NUMBER_OF_VOTES_FOR_PROJECT = 2,
       votes = $firebaseObject(FirebaseRef.votes);
 
     return {
       all: all,
       hasVotingRights: hasVotingRights,
-      getAvailableVotesForRole: getAvailableVotesForRole
+      getAvailableVotesForProject: getAvailableVotesForProject
     };
 
     function all () {
@@ -22,18 +22,11 @@
     }
 
     function hasVotingRights (user) {
-      return user.projectId || 'VIP' === user.role;
+      return user.projectId;
     }
 
-    function getAvailableVotesForRole (role, projectsLength) {
-      if (!role || 'VIP' !== role) {
-        return DEFAULT_NUMBER_OF_VOTES;
-      }
-      return calculateNumberOfVotesForAdminRole(projectsLength);
-    }
-
-    function calculateNumberOfVotesForAdminRole (projectsLength) {
-      return Math.floor(projectsLength / 2);
+    function getAvailableVotesForProject () {
+      return DEFAULT_NUMBER_OF_VOTES_FOR_PROJECT;
     }
 
   }

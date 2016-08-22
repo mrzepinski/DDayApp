@@ -46,7 +46,7 @@ During your presentation you should try convince others that your application is
 
 # Selecting winners
 
-The best design will be selected during a secret voting process. Each team will have two votes. These votes have to be divided or given away for another project. This process will take maximum 10 minutes. A team of business representatives - VIP Jury - will be involved. They will be allocated half the votes in the number of submitted projects (rounded down). Upon completion of the voting, results will be published, along with information which team becomes a winner. If two or more of the projects will gain the same number of votes, two crucial votes will be given away by the head of the department or a person delegated by the head. All the participants of the winning team will receive an award.
+The best design will be selected during a secret voting process. Each team will have two votes. These votes have to be divided or given away for another project. This process will take maximum 10 minutes. Upon completion of the voting, results will be published, along with information which team becomes a winner. If two or more of the projects will gain the same number of votes, two crucial votes will be given away by the head of the department or a person delegated by the head. All the participants of the winning team will receive an award.
 
 # After party
 
