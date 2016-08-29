@@ -63,6 +63,13 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
 });
 
+gulp.task('fonts', function () {
+  return gulp.src($.mainBowerFiles())
+    .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
+    .pipe($.flatten())
+    .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
+});
+
 gulp.task('other', function () {
   var fileFilter = $.filter(function (file) {
     return file.stat.isFile();
@@ -76,7 +83,7 @@ gulp.task('other', function () {
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 });
 
-gulp.task('manifest', ['html', 'other'], function () {
+gulp.task('manifest', ['html', 'fonts', 'other'], function () {
   return gulp.src(conf.paths.dist + '/**/*')
     .pipe($.manifest({
       hash: true,
