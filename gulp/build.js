@@ -39,7 +39,6 @@ gulp.task('html', ['inject', 'partials'], function () {
 
   return gulp.src(path.join(conf.paths.tmp, '/serve/*.html'))
     .pipe($.inject(partialsInjectFile, partialsInjectOptions))
-    .pipe($.rev())
     .pipe(jsFilter)
     .pipe($.sourcemaps.init())
     .pipe($.ngAnnotate())
@@ -48,12 +47,10 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe(jsFilter.restore)
     .pipe(cssFilter)
     .pipe($.sourcemaps.init())
-    .pipe($.replace('../../bower_components/material-design-icons/iconfont/', '../fonts/'))
     .pipe($.minifyCss({ processImport: false }))
     .pipe($.sourcemaps.write('maps'))
     .pipe(cssFilter.restore)
     .pipe($.useref())
-    .pipe($.revReplace())
     .pipe(htmlFilter)
     .pipe($.minifyHtml({
       empty: true,
@@ -64,15 +61,6 @@ gulp.task('html', ['inject', 'partials'], function () {
     .pipe(htmlFilter.restore)
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
     .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
-});
-
-// Only applies for fonts from bower dependencies
-// Custom fonts are handled by the "other" task
-gulp.task('fonts', function () {
-  return gulp.src($.mainBowerFiles().concat('bower_components/material-design-icons/iconfont/*'))
-    .pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
-    .pipe($.flatten())
-    .pipe(gulp.dest(path.join(conf.paths.dist, '/fonts/')));
 });
 
 gulp.task('other', function () {
@@ -88,7 +76,7 @@ gulp.task('other', function () {
     .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
 });
 
-gulp.task('manifest', ['html', 'fonts', 'other'], function () {
+gulp.task('manifest', ['html', 'other'], function () {
   return gulp.src(conf.paths.dist + '/**/*')
     .pipe($.manifest({
       hash: true,
