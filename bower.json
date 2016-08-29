@@ -24,5 +24,8 @@
     "angular-drag-and-drop-lists": "1.3.0",
     "angular-timer": "1.3.3",
     "malarkey": "yuanqing/malarkey#1.3.2"
+  },
+  "resolutions": {
+    "angular": "1.4.8"
   }
 }
