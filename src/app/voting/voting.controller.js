@@ -12,7 +12,7 @@
       userFirebaseObj = null,
       allVotesFirebaseArray = null,
       userVotes = [],
-      availableVotesForUserRole;
+      availableVotesForProject = Voting.getAvailableVotesForProject();
 
     vm.inProgress = true;
     vm.loaded = false;
@@ -30,7 +30,6 @@
 
         vm.settings = Settings.all();
         vm.settings.$loaded(function () {
-          var availableVotesForProject = Voting.getAvailableVotesForProject();
           if (vm.settings.votingEnabled) {
             $q.all({
               projects: Project.all().$loaded(),
@@ -95,8 +94,8 @@
         .then(null, handleError)
         .finally(function () {
           vm.votingInProgress = false;
-          vm.remainingVotes = availableVotesForUserRole - _.size(userVotes);
-          vm.progress = (availableVotesForUserRole - vm.remainingVotes) / availableVotesForUserRole * 100;
+          vm.remainingVotes = availableVotesForProject - _.size(userVotes);
+          vm.progress = (availableVotesForProject - vm.remainingVotes) / availableVotesForProject * 100;
         });
     }
 
@@ -116,8 +115,8 @@
         .then(null, handleError)
         .finally(function () {
           vm.votingInProgress = false;
-          vm.remainingVotes = availableVotesForUserRole - _.size(userVotes);
-          vm.progress = (availableVotesForUserRole - vm.remainingVotes) / availableVotesForUserRole * 100;
+          vm.remainingVotes = availableVotesForProject - _.size(userVotes);
+          vm.progress = (availableVotesForProject - vm.remainingVotes) / availableVotesForProject * 100;
         });
     }
 

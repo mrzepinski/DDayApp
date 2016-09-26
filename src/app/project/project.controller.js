@@ -76,7 +76,7 @@
     }
 
     function addOrUpdateProject () {
-      var title = vm.model.title.trim();
+      var title = _.trim(vm.model.title);
       if (!title) {
         toastr.warning('You need to type a title!');
         return;
