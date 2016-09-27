@@ -6,7 +6,7 @@
     .controller('SettingsController', SettingsController);
 
   /** @ngInject */
-  function SettingsController (Settings, Auth, Mandrill, toastr) {
+  function SettingsController (Settings, Auth, toastr) {
 
     var vm = this;
 

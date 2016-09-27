@@ -31,6 +31,7 @@
       progress: 0,
       inProgress: true,
       timerFinished: false,
+      results: [],
       stopTimer: function () {
         $timeout(function () {
           vm.voting.timerFinished = true;
@@ -87,7 +88,7 @@
       $timeout(function () {
         var members = 0,
           todos = 0;
-        vm.voting.fakeLabels = _.fill(Array(_.size(vm.projects)), '?');
+        vm.voting.fakeLabels = _.fill(new Array(_.size(vm.projects)), '?');
         projectsIds = _.pluck(vm.projects, '$id');
         vm.voting.realLabels = _.map(_.pluck(vm.projects, 'title'), function (title) {
           return _.trunc(title, 15);
@@ -128,7 +129,9 @@
         var votesArray = _.flatten(_.values(rawVotes)),
           votes = _.countBy(votesArray, function (projectId) {
             return projectId;
-          });
+          }),
+          userIdsToProjectIds = {},
+          projectIdsToProjectNames = {};
         vm.voting.data[0].splice(0, vm.voting.data[0].length);
         _.each(projectsIds, function (projectId) {
           if (votes[projectId]) {
@@ -143,6 +146,26 @@
         vm.voting.progress = (allVotesCount - vm.voting.remaining) / allVotesCount * 100;
         vm.voting.inProgress = !!vm.voting.remaining;
         if (!vm.voting.inProgress) {
+          _.each(users, function (user) {
+            if (Voting.hasVotingRights(user)) {
+              userIdsToProjectIds[user.$id] = user.projectId;
+            }
+          });
+          _.each(vm.projects, function (project) {
+            projectIdsToProjectNames[project.$id] = project.title;
+          });
+          _.each(rawVotes, function (projectIds, userId) {
+            if (userIdsToProjectIds[userId]) {
+              var result = {
+                team: projectIdsToProjectNames[userIdsToProjectIds[userId]],
+                votes: []
+              };
+              _.each(projectIds, function (projectId) {
+                result.votes.push(projectIdsToProjectNames[projectId]);
+              });
+              vm.voting.results.push(result);
+            }
+          });
           vm.settings.votingEnabled = false;
           vm.settings.votingResultsVisible = true;
           vm.settings.$save(null, handleError);
